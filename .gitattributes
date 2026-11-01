@@ -19,3 +19,4 @@ gradlew text eol=lf
 *.zip binary
 *.woff binary
 *.woff2 binary
+*.ogg binary
