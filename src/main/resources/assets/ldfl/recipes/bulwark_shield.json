@@ -11,5 +11,5 @@
     "S": { "item": "minecraft:shield" },
     "D": { "item": "minecraft:diamond" }
   },
-  "result": { "item": "ldfl:rampart_shield" }
+  "result": { "item": "ldfl:bulwark_shield" }
 }

@@ -20,9 +20,9 @@ import net.minecraft.world.World;
  * <p>Vanilla blocking works for any item whose use action is {@link EnumAction#BLOCK}, and Forge's
  * {@link #isShield} lets axes disable it the same way they disable a vanilla shield.</p>
  */
-public class ItemRampartShield extends Item implements ISignatureItem {
+public class ItemBulwarkShield extends Item implements ISignatureItem {
 
-    public ItemRampartShield() {
+    public ItemBulwarkShield() {
         setMaxStackSize(1);
     }
 

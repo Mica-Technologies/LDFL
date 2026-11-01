@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 
 /**
  * Bulwark's projected barrier: a flat, upright panel held in front of its owner while they raise
- * the Rampart Shield.
+ * the Bulwark Shield.
  *
  * <p>The panel cannot be an axis-aligned bounding box, because it turns with its owner, so it has
  * no collision of its own. Blocking is geometric instead: {@code BarrierLogic} tests projectile

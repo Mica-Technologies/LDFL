@@ -88,9 +88,9 @@ public final class LdflConfig {
         @Config.RangeDouble(min = 0, max = 100)
         public double shockwaveDamage = 5.0D;
 
-        @Config.Comment("Fault Line (ultimate) damage to each enemy in the cone.")
+        @Config.Comment("Tectonic Slam (ultimate) damage to each enemy in the cone.")
         @Config.RangeDouble(min = 0, max = 100)
-        public double faultLineDamage = 6.0D;
+        public double tectonicSlamDamage = 6.0D;
 
         @Config.Comment("Damage dealt to fill the ultimate meter.")
         @Config.RangeDouble(min = 1, max = 10000)

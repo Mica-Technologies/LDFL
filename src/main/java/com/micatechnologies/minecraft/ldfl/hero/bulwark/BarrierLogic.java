@@ -7,7 +7,7 @@ import com.micatechnologies.minecraft.ldfl.entity.EntityBolt;
 import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
 import com.micatechnologies.minecraft.ldfl.hero.Targeting;
-import com.micatechnologies.minecraft.ldfl.item.ItemRampartShield;
+import com.micatechnologies.minecraft.ldfl.item.ItemBulwarkShield;
 import java.util.ArrayList;
 import java.util.List;
 import net.minecraft.entity.Entity;
@@ -66,7 +66,7 @@ public final class BarrierLogic {
 
         boolean wantsRaised = data.barrierBrokenTicks == 0 && data.barrierHealth > 0.0F
             && player.isHandActive()
-            && player.getActiveItemStack().getItem() instanceof ItemRampartShield
+            && player.getActiveItemStack().getItem() instanceof ItemBulwarkShield
             && player.getItemInUseMaxCount() >= RAISE_DELAY_TICKS;
 
         if (wantsRaised && (data.barrier == null || data.barrier.isDead)) {

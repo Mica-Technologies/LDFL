@@ -40,9 +40,9 @@ public final class Heroes {
             new HeroSpec(BULWARK_ID, Role.TANK,
                 new AbilitySpec("shoulder_rush", () -> ticks(LdflConfig.bulwark.shoulderRushCooldown)),
                 new AbilitySpec("shockwave", () -> ticks(LdflConfig.bulwark.shockwaveCooldown)),
-                new AbilitySpec("fault_line", 0),
+                new AbilitySpec("tectonic_slam", 0),
                 () -> LdflConfig.bulwark.ultCost),
-            BulwarkKit::shoulderRush, BulwarkKit::shockwave, BulwarkKit::faultLine));
+            BulwarkKit::shoulderRush, BulwarkKit::shockwave, BulwarkKit::tectonicSlam));
 
         FORGEWRIGHT = HeroRegistry.register(new HeroDefinition(
             new HeroSpec(FORGEWRIGHT_ID, Role.DAMAGE,

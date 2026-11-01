@@ -30,7 +30,7 @@ import net.minecraft.world.WorldServer;
  *       is thrown back, which ends the dash.</li>
  *   <li><b>Shockwave</b>: a line of force along the look direction, up to 16 blocks, that stops at
  *       the first solid block and hits each enemy along it once.</li>
- *   <li><b>Fault Line</b> (ultimate): a forward ground slam. Enemies in a cone take damage, are
+ *   <li><b>Tectonic Slam</b> (ultimate): a forward ground slam. Enemies in a cone take damage, are
  *       knocked up and are left slowed and weakened.</li>
  * </ul>
  */
@@ -41,9 +41,9 @@ public final class BulwarkKit {
 
     private static final int SHOCKWAVE_RANGE = 16;
 
-    private static final double FAULT_RANGE = 8.0D;
-    private static final double FAULT_HALF_ANGLE_COS = Math.cos(Math.toRadians(50.0D));
-    private static final int FAULT_STAGGER_TICKS = 50;
+    private static final double SLAM_RANGE = 8.0D;
+    private static final double SLAM_HALF_ANGLE_COS = Math.cos(Math.toRadians(50.0D));
+    private static final int SLAM_STAGGER_TICKS = 50;
 
     private BulwarkKit() {
         throw new AssertionError("No instances.");
@@ -122,33 +122,33 @@ public final class BulwarkKit {
         return true;
     }
 
-    // --- Fault Line (ultimate) ---------------------------------------------------------------
+    // --- Tectonic Slam (ultimate) ---------------------------------------------------------------
 
-    public static boolean faultLine(EntityPlayerMP p, HeroData data) {
+    public static boolean tectonicSlam(EntityPlayerMP p, HeroData data) {
         WorldServer world = p.getServerWorld();
         Vec3d look = flatLook(p);
-        AxisAlignedBB area = p.getEntityBoundingBox().grow(FAULT_RANGE, 3.0D, FAULT_RANGE);
+        AxisAlignedBB area = p.getEntityBoundingBox().grow(SLAM_RANGE, 3.0D, SLAM_RANGE);
         for (Entity e : world.getEntitiesWithinAABBExcludingEntity(p, area)) {
             if (!Targeting.isEnemy(p, e)) {
                 continue;
             }
             Vec3d to = new Vec3d(e.posX - p.posX, 0.0D, e.posZ - p.posZ);
             double dist = to.length();
-            if (dist > FAULT_RANGE || (dist > 0.5D && to.normalize().dotProduct(look) < FAULT_HALF_ANGLE_COS)) {
+            if (dist > SLAM_RANGE || (dist > 0.5D && to.normalize().dotProduct(look) < SLAM_HALF_ANGLE_COS)) {
                 continue;
             }
             EntityLivingBase target = (EntityLivingBase) e;
-            target.attackEntityFrom(DamageSource.causePlayerDamage(p), (float) LdflConfig.bulwark.faultLineDamage);
-            target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, FAULT_STAGGER_TICKS, 3));
-            target.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, FAULT_STAGGER_TICKS, 1));
+            target.attackEntityFrom(DamageSource.causePlayerDamage(p), (float) LdflConfig.bulwark.tectonicSlamDamage);
+            target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, SLAM_STAGGER_TICKS, 3));
+            target.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, SLAM_STAGGER_TICKS, 1));
             target.motionY += 0.45D;
             target.velocityChanged = true;
         }
         // A visible crack running out along the cone's centre line.
-        for (int i = 1; i <= (int) FAULT_RANGE; i++) {
+        for (int i = 1; i <= (int) SLAM_RANGE; i++) {
             Vec3d at = new Vec3d(p.posX, p.posY + 0.1D, p.posZ).add(look.scale(i));
             world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, at.x, at.y, at.z, 4,
-                0.4D * i / FAULT_RANGE + 0.2D, 0.1D, 0.4D * i / FAULT_RANGE + 0.2D, 0.02D);
+                0.4D * i / SLAM_RANGE + 0.2D, 0.1D, 0.4D * i / SLAM_RANGE + 0.2D, 0.02D);
         }
         world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE,
             SoundCategory.PLAYERS, 1.0F, 0.6F);

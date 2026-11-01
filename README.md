@@ -17,9 +17,9 @@ Default keys (rebindable under *Controls → LDFL*): **R** ability 1, **G** abil
 
 ## Heroes (work in progress)
 
-- **Bulwark** (Tank): Rampart Shield and Bulwark Maul. Holding up the shield projects a wide
+- **Bulwark** (Tank): Bulwark Shield and Bulwark Maul. Holding up the shield projects a wide
   barrier that stops enemy projectiles and melee, with its own health shown on the HUD.
-  *Shoulder Rush*, *Shockwave*, ultimate *Fault Line*.
+  *Shoulder Rush*, *Shockwave*, ultimate *Tectonic Slam*.
 - **Forgewright** (Damage): Bolt Driver and Tinker's Wrench. *Deploy Sentry* places an
   auto-targeting sentry (one at a time; hit it with the wrench to repair it), *Plating* gives
   brief damage resistance and fully repairs the sentry, ultimate *Slag Surge* doubles the

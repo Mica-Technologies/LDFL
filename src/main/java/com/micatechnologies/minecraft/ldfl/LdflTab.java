@@ -15,6 +15,6 @@ public final class LdflTab extends CreativeTabs {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(LdflItems.RAMPART_SHIELD);
+        return new ItemStack(LdflItems.BULWARK_SHIELD);
     }
 }

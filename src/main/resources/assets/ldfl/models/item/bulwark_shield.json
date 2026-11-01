@@ -1,7 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "ldfl:items/rampart_shield"
+    "layer0": "ldfl:items/bulwark_shield"
   },
   "display": {
     "thirdperson_righthand": { "rotation": [0, 90, 0], "translation": [0, -2, 2], "scale": [1.2, 1.2, 1.2] },
