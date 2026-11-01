@@ -39,6 +39,13 @@ public class LdflClientProxy extends LdflCommonProxy {
             com.micatechnologies.minecraft.ldfl.entity.EntityWardBell.class,
             com.micatechnologies.minecraft.ldfl.client.render.RenderWardBell::new);
         MinecraftForge.EVENT_BUS.register(new com.micatechnologies.minecraft.ldfl.client.KestrelClient());
+        // The raised-shield model (item/bulwark_shield_blocking) is chosen by a "blocking" item
+        // property, as for the vanilla shield. Registered here because IItemPropertyGetter is
+        // client-only: creating one in common code would crash a dedicated server.
+        com.micatechnologies.minecraft.ldfl.item.LdflItems.BULWARK_SHIELD.addPropertyOverride(
+            new net.minecraft.util.ResourceLocation("blocking"),
+            (stack, world, entity) -> entity != null && entity.isHandActive()
+                && entity.getActiveItemStack() == stack ? 1.0F : 0.0F);
     }
 
     @Override

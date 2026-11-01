@@ -1,10 +1,58 @@
 {
-  "parent": "item/generated",
+  "__comment": "3D Bulwark Shield. Geometry matches vanilla's shield (plate centred on the origin, handle behind it), so vanilla's held and blocking display transforms apply unchanged. Original texture: tools/art/textures.ps1.",
   "textures": {
-    "layer0": "ldfl:items/bulwark_shield"
+    "particle": "ldfl:items/bulwark_shield_model",
+    "s": "ldfl:items/bulwark_shield_model"
   },
+  "elements": [
+    { "__comment": "plate", "from": [-6, -11, 1], "to": [6, 11, 3],
+      "faces": {
+        "south": { "uv": [0, 0, 6, 11], "texture": "#s" },
+        "north": { "uv": [6, 0, 12, 11], "texture": "#s" },
+        "east":  { "uv": [12, 0, 13, 11], "texture": "#s" },
+        "west":  { "uv": [12, 0, 13, 11], "texture": "#s" },
+        "up":    { "uv": [0, 11, 6, 12], "texture": "#s" },
+        "down":  { "uv": [0, 11, 6, 12], "texture": "#s" }
+      }
+    },
+    { "__comment": "visor band", "from": [-5, 5, 3], "to": [5, 7, 3.5],
+      "faces": {
+        "south": { "uv": [0, 13, 5, 14], "texture": "#s" },
+        "east":  { "uv": [0, 13, 0.5, 14], "texture": "#s" },
+        "west":  { "uv": [0, 13, 0.5, 14], "texture": "#s" },
+        "up":    { "uv": [0, 13, 5, 13.5], "texture": "#s" },
+        "down":  { "uv": [0, 13, 5, 13.5], "texture": "#s" }
+      }
+    },
+    { "__comment": "boss", "from": [-2, -4, 3], "to": [2, 0, 4],
+      "faces": {
+        "south": { "uv": [2, 6, 4, 8], "texture": "#s" },
+        "east":  { "uv": [2, 6, 2.5, 8], "texture": "#s" },
+        "west":  { "uv": [2, 6, 2.5, 8], "texture": "#s" },
+        "up":    { "uv": [2, 6, 4, 6.5], "texture": "#s" },
+        "down":  { "uv": [2, 6, 4, 6.5], "texture": "#s" }
+      }
+    },
+    { "__comment": "handle", "from": [-1, -3, -5], "to": [1, 3, 1],
+      "faces": {
+        "north": { "uv": [13, 0, 15, 3], "texture": "#s" },
+        "east":  { "uv": [13, 0, 15, 3], "texture": "#s" },
+        "west":  { "uv": [13, 0, 15, 3], "texture": "#s" },
+        "up":    { "uv": [13, 0, 15, 3], "texture": "#s" },
+        "down":  { "uv": [13, 0, 15, 3], "texture": "#s" }
+      }
+    }
+  ],
   "display": {
-    "thirdperson_righthand": { "rotation": [0, 90, 0], "translation": [0, -2, 2], "scale": [1.2, 1.2, 1.2] },
-    "thirdperson_lefthand": { "rotation": [0, -90, 0], "translation": [0, -2, 2], "scale": [1.2, 1.2, 1.2] }
-  }
+    "thirdperson_righthand": { "rotation": [0, 90, 0], "translation": [10.51, 6, -4], "scale": [1, 1, 1] },
+    "thirdperson_lefthand": { "rotation": [0, 90, 0], "translation": [10.51, 6, 12], "scale": [1, 1, 1] },
+    "firstperson_righthand": { "rotation": [0, 180, 5], "translation": [-10, 2, -10], "scale": [1.25, 1.25, 1.25] },
+    "firstperson_lefthand": { "rotation": [0, 180, 5], "translation": [10, 0, -10], "scale": [1.25, 1.25, 1.25] },
+    "gui": { "rotation": [15, -25, -5], "translation": [2, 3, 0], "scale": [0.65, 0.65, 0.65] },
+    "fixed": { "rotation": [0, 180, 0], "translation": [-2, 4, -5], "scale": [0.5, 0.5, 0.5] },
+    "ground": { "rotation": [0, 0, 0], "translation": [4, 4, 2], "scale": [0.25, 0.25, 0.25] }
+  },
+  "overrides": [
+    { "predicate": { "blocking": 1 }, "model": "ldfl:item/bulwark_shield_blocking" }
+  ]
 }
