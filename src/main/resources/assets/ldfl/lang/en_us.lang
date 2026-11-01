@@ -40,3 +40,14 @@ entity.ldfl.bloom_flask.name=Bloom Flask
 ldfl.ability.solace.bloom_flask=Bloom Flask
 ldfl.ability.solace.tailwind=Tailwind
 ldfl.ability.solace.sanctuary=Sanctuary
+
+tile.ldfl.hull_panel_light.name=Light Hull Panel
+tile.ldfl.hull_panel_dark.name=Dark Hull Panel
+tile.ldfl.hull_panel_accent.name=Accent Hull Panel
+tile.ldfl.hull_panel_light_stairs.name=Light Hull Panel Stairs
+tile.ldfl.hull_panel_dark_stairs.name=Dark Hull Panel Stairs
+tile.ldfl.lumen_panel.name=Lumen Panel
+tile.ldfl.grid_floor.name=Grid Floor
+tile.ldfl.vent_panel.name=Vent Panel
+tile.ldfl.objective_pad.name=Objective Pad
+tile.ldfl.mending_station.name=Mending Station

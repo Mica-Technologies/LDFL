@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ " P ", "PLP", " P " ],
+  "key": { "P": { "item": "ldfl:hull_panel_dark" }, "L": { "item": "ldfl:lumen_panel" } },
+  "result": { "item": "ldfl:objective_pad", "count": 4 }
+}

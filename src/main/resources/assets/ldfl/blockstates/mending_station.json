@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "charged=true": { "model": "ldfl:mending_station_charged" },
+    "charged=false": { "model": "ldfl:mending_station_empty" }
+  }
+}

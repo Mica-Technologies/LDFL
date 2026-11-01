@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "RMR", "PPP" ],
+  "key": { "R": { "item": "minecraft:redstone" }, "M": { "item": "minecraft:speckled_melon" }, "P": { "item": "ldfl:hull_panel_light" } },
+  "result": { "item": "ldfl:mending_station", "count": 1 }
+}

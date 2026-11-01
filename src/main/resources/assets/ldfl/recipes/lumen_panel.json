@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ " P ", "PGP", " P " ],
+  "key": { "P": { "item": "ldfl:hull_panel_light" }, "G": { "item": "minecraft:glowstone" } },
+  "result": { "item": "ldfl:lumen_panel", "count": 4 }
+}

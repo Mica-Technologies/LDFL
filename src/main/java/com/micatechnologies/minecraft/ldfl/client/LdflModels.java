@@ -1,7 +1,9 @@
 package com.micatechnologies.minecraft.ldfl.client;
 
 import com.micatechnologies.minecraft.ldfl.LdflConstants;
+import com.micatechnologies.minecraft.ldfl.block.LdflBlocks;
 import com.micatechnologies.minecraft.ldfl.item.LdflItems;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -20,6 +22,11 @@ public final class LdflModels {
     @SubscribeEvent
     public static void onModelRegistry(ModelRegistryEvent event) {
         for (Item item : LdflItems.all()) {
+            ModelLoader.setCustomModelResourceLocation(item, 0,
+                new ModelResourceLocation(item.getRegistryName(), "inventory"));
+        }
+        for (Block block : LdflBlocks.all()) {
+            Item item = Item.getItemFromBlock(block);
             ModelLoader.setCustomModelResourceLocation(item, 0,
                 new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }

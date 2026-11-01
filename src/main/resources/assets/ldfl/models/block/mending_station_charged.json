@@ -1,0 +1,38 @@
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "ldfl:blocks/mending_base",
+    "base": "ldfl:blocks/mending_base",
+    "cross": "ldfl:blocks/mending_cross_on"
+  },
+  "elements": [
+    { "from": [0, 0, 0], "to": [16, 3, 16],
+      "faces": {
+        "down":  { "uv": [0, 0, 16, 16], "texture": "#base", "cullface": "down" },
+        "up":    { "uv": [0, 0, 16, 16], "texture": "#base" },
+        "north": { "uv": [0, 13, 16, 16], "texture": "#base", "cullface": "north" },
+        "south": { "uv": [0, 13, 16, 16], "texture": "#base", "cullface": "south" },
+        "west":  { "uv": [0, 13, 16, 16], "texture": "#base", "cullface": "west" },
+        "east":  { "uv": [0, 13, 16, 16], "texture": "#base", "cullface": "east" }
+      }
+    },
+    { "from": [6, 3, 3], "to": [10, 4, 13],
+      "faces": {
+        "up":    { "uv": [6, 3, 10, 13], "texture": "#cross" },
+        "north": { "uv": [6, 0, 10, 1], "texture": "#cross" },
+        "south": { "uv": [6, 0, 10, 1], "texture": "#cross" },
+        "west":  { "uv": [3, 0, 13, 1], "texture": "#cross" },
+        "east":  { "uv": [3, 0, 13, 1], "texture": "#cross" }
+      }
+    },
+    { "from": [3, 3, 6], "to": [13, 4, 10],
+      "faces": {
+        "up":    { "uv": [3, 6, 13, 10], "texture": "#cross" },
+        "north": { "uv": [3, 0, 13, 1], "texture": "#cross" },
+        "south": { "uv": [3, 0, 13, 1], "texture": "#cross" },
+        "west":  { "uv": [6, 0, 10, 1], "texture": "#cross" },
+        "east":  { "uv": [6, 0, 10, 1], "texture": "#cross" }
+      }
+    }
+  ]
+}

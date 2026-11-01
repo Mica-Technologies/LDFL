@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ " P ", "PBP", " P " ],
+  "key": { "P": { "item": "ldfl:hull_panel_dark" }, "B": { "item": "minecraft:iron_bars" } },
+  "result": { "item": "ldfl:vent_panel", "count": 4 }
+}

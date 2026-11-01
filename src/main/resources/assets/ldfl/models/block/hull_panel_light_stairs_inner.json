@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "ldfl:blocks/hull_panel_light",
+    "top": "ldfl:blocks/hull_panel_light",
+    "side": "ldfl:blocks/hull_panel_light"
+  }
+}

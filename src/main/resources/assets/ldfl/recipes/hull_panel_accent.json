@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "PPP", "PDP", "PPP" ],
+  "key": { "P": { "item": "ldfl:hull_panel_light" }, "D": { "item": "minecraft:dye", "data": 14 } },
+  "result": { "item": "ldfl:hull_panel_accent", "count": 8 }
+}

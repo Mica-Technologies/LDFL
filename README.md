@@ -30,6 +30,14 @@ Default keys (rebindable under *Controls → LDFL*): **R** ability 1, **G** abil
 
 With `combat.pvp` off, every player counts as an ally, and your tamed pets always do.
 
+## Building set
+
+Futuristic decor blocks, all craftable: light, dark and accent **Hull Panels** (light and dark
+also as stairs), the glowing **Lumen Panel**, **Grid Floor**, **Vent Panel** and **Objective Pad**.
+
+The **Mending Station** is a floor pad with a cross: step on it while hurt to heal 8 health. It
+then goes dark and recharges in 10 seconds, so you can see from a distance whether it is ready.
+
 ## Server config
 
 `config/ldfl.cfg` → `combat.pvp` (default `false`). When it is off, hero kits affect hostile mobs

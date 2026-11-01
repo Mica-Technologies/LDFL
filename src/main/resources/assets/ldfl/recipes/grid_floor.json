@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "PP", "PP" ],
+  "key": { "P": { "item": "ldfl:hull_panel_dark" } },
+  "result": { "item": "ldfl:grid_floor", "count": 4 }
+}

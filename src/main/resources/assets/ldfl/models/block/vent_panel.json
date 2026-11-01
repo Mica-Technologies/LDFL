@@ -1,0 +1,4 @@
+{
+  "parent": "block/cube_all",
+  "textures": { "all": "ldfl:blocks/vent_panel" }
+}

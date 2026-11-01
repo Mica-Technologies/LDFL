@@ -1,0 +1,6 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [ "P  ", "PP ", "PPP" ],
+  "key": { "P": { "item": "ldfl:hull_panel_light" } },
+  "result": { "item": "ldfl:hull_panel_light_stairs", "count": 4 }
+}
