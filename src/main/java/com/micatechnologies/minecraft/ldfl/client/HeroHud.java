@@ -13,13 +13,15 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
- * The hero HUD, bottom right: hero and role, each ability with its key and cooldown, and the
+ * The hero HUD, top right: hero and role, each ability with its key and cooldown, and the
  * ultimate meter. Drawn only while the player is a hero.
  */
 public final class HeroHud {
 
     private static final int WIDTH = 132;
     private static final int ROW = 11;
+    /** Clears two rows of vanilla status-effect icons (24 px each, plus margins). */
+    private static final int TOP = 56;
     private static final int READY = 0x55FF55;
     private static final int COOLING = 0xAAAAAA;
     private static final int ULT_READY_A = 0xFFD700;
@@ -41,7 +43,9 @@ public final class HeroHud {
         float resource = ClientHero.resource;
         int rows = resource >= 0.0F ? 7 : 6;
         int x = res.getScaledWidth() - WIDTH - 4;
-        int y = res.getScaledHeight() - rows * ROW - 6;
+        // Top right, below the vanilla status-effect icons. The bottom right is where the held
+        // item is drawn in first person, and the HUD used to cover the hero's own weapon.
+        int y = TOP;
 
         Gui.drawRect(x - 3, y - 3, x + WIDTH, y + rows * ROW, 0x80000000);
 
