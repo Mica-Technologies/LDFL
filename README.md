@@ -15,7 +15,7 @@ as you deal damage or heal. The HUD shows your hero, role, cooldowns and ultimat
 
 Default keys (rebindable under *Controls → LDFL*): **R** ability 1, **G** ability 2, **Z** ultimate.
 
-## Heroes (work in progress)
+## Heroes
 
 - **Bulwark** (Tank): Bulwark Shield and Bulwark Maul. Holding up the shield projects a wide
   barrier that stops enemy projectiles and melee, with its own health shown on the HUD.
@@ -27,6 +27,17 @@ Default keys (rebindable under *Controls → LDFL*): **R** ability 1, **G** abil
 - **Solace** (Support): Solace Staff. Hold right-click to beam healing into the ally in your
   sights. *Bloom Flask* heals allies (you included) and wounds enemies, *Tailwind* speeds up
   nearby allies, ultimate *Sanctuary* heals and shields every ally around you.
+
+- **Monolith** (Tank): Cragfist. *Stone Skin* grants absorption hearts, *Upheaval* raises a
+  temporary stone wall that crumbles on its own, ultimate *Bedrock Anchor* makes you immovable
+  and forces nearby hostile mobs to attack you.
+- **Kestrel** (Damage): Longshot Rifle. Hold to charge (the view zooms), release for an instant
+  shot. *Updraft* launches you into a slow, fall-damage-free glide, *Marker Dart* makes a target
+  glow and take extra damage, ultimate *Long Vigil* reveals nearby enemies and makes your shots
+  pierce.
+- **Chime** (Support): Tuning Rod fires resonant orbs. *Resonance* gives nearby allies Strength,
+  *Ward Bell* places a bell that keeps shielding allies with absorption, ultimate *Crescendo*
+  makes allies around you nearly invulnerable for a few seconds.
 
 With `combat.pvp` off, every player counts as an ally, and your tamed pets always do.
 
