@@ -3,6 +3,7 @@ package com.micatechnologies.minecraft.ldfl.hero;
 import com.micatechnologies.minecraft.ldfl.hero.bulwark.BulwarkKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.AbilitySpec;
 import com.micatechnologies.minecraft.ldfl.hero.forgewright.ForgewrightKit;
+import com.micatechnologies.minecraft.ldfl.hero.solace.SolaceKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroSpec;
 import com.micatechnologies.minecraft.ldfl.hero.core.Role;
 
@@ -17,9 +18,11 @@ public final class Heroes {
 
     public static final String BULWARK_ID = "bulwark";
     public static final String FORGEWRIGHT_ID = "forgewright";
+    public static final String SOLACE_ID = "solace";
 
     public static HeroDefinition BULWARK;
     public static HeroDefinition FORGEWRIGHT;
+    public static HeroDefinition SOLACE;
 
     private Heroes() {
         throw new AssertionError("No instances.");
@@ -45,5 +48,13 @@ public final class Heroes {
                 new AbilitySpec("slag_surge", 0),
                 200.0F),
             ForgewrightKit::deploySentry, ForgewrightKit::plating, ForgewrightKit::slagSurge));
+
+        SOLACE = HeroRegistry.register(new HeroDefinition(
+            new HeroSpec(SOLACE_ID, Role.SUPPORT,
+                new AbilitySpec("bloom_flask", seconds(8)),
+                new AbilitySpec("tailwind", seconds(12)),
+                new AbilitySpec("sanctuary", 0),
+                200.0F),
+            SolaceKit::bloomFlask, SolaceKit::tailwind, SolaceKit::sanctuary));
     }
 }

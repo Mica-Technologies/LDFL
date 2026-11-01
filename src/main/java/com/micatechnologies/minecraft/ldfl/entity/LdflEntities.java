@@ -36,5 +36,17 @@ public final class LdflEntities {
             .name(LdflConstants.MOD_NAMESPACE + ".bolt")
             .tracker(64, 1, true)
             .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+            .entity(EntityHealBeam.class)
+            .id(new ResourceLocation(LdflConstants.MOD_NAMESPACE, "heal_beam"), 3)
+            .name(LdflConstants.MOD_NAMESPACE + ".heal_beam")
+            .tracker(96, 5, false)
+            .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+            .entity(EntityBloomFlask.class)
+            .id(new ResourceLocation(LdflConstants.MOD_NAMESPACE, "bloom_flask"), 4)
+            .name(LdflConstants.MOD_NAMESPACE + ".bloom_flask")
+            .tracker(64, 2, true)
+            .build());
     }
 }

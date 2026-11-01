@@ -4,6 +4,7 @@ item.ldfl.rampart_shield.name=Rampart Shield
 item.ldfl.bulwark_maul.name=Bulwark Maul
 item.ldfl.bolt_driver.name=Bolt Driver
 item.ldfl.tinkers_wrench.name=Tinker's Wrench
+item.ldfl.solace_staff.name=Solace Staff
 
 effect.ldfl.wounded=Wounded
 
@@ -32,3 +33,10 @@ entity.ldfl.bolt.name=Bolt
 ldfl.ability.forgewright.deploy_sentry=Deploy Sentry
 ldfl.ability.forgewright.plating=Plating
 ldfl.ability.forgewright.slag_surge=Slag Surge
+
+ldfl.hero.solace=Solace
+entity.ldfl.heal_beam.name=Heal Beam
+entity.ldfl.bloom_flask.name=Bloom Flask
+ldfl.ability.solace.bloom_flask=Bloom Flask
+ldfl.ability.solace.tailwind=Tailwind
+ldfl.ability.solace.sanctuary=Sanctuary

@@ -24,7 +24,11 @@ Default keys (rebindable under *Controls → LDFL*): **R** ability 1, **G** abil
   auto-targeting sentry (one at a time; hit it with the wrench to repair it), *Plating* gives
   brief damage resistance and fully repairs the sentry, ultimate *Slag Surge* doubles the
   sentry's fire rate and makes every bolt ignite.
-- **Solace** (Support): heal beam and area heals. *(planned)*
+- **Solace** (Support): Solace Staff. Hold right-click to beam healing into the ally in your
+  sights. *Bloom Flask* heals allies (you included) and wounds enemies, *Tailwind* speeds up
+  nearby allies, ultimate *Sanctuary* heals and shields every ally around you.
+
+With `combat.pvp` off, every player counts as an ally, and your tamed pets always do.
 
 ## Server config
 

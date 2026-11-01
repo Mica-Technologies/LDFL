@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " GE",
+    " SG",
+    "S  "
+  ],
+  "key": {
+    "G": { "item": "minecraft:gold_ingot" },
+    "E": { "item": "minecraft:emerald" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": { "item": "ldfl:solace_staff" }
+}

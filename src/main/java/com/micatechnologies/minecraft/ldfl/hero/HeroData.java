@@ -39,6 +39,9 @@ public final class HeroData {
     /** Bulwark: the raised barrier panel, or {@code null} while lowered. Server side only. */
     public com.micatechnologies.minecraft.ldfl.entity.EntityBarrier barrier;
 
+    /** Solace: the active heal beam, or {@code null}. Server side only. */
+    public com.micatechnologies.minecraft.ldfl.entity.EntityHealBeam beam;
+
     /** Forgewright: the deployed sentry, or {@code null}. Server side only. */
     public com.micatechnologies.minecraft.ldfl.entity.EntitySentry sentry;
 

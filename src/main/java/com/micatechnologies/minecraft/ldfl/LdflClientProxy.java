@@ -29,6 +29,12 @@ public class LdflClientProxy extends LdflCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(
             com.micatechnologies.minecraft.ldfl.entity.EntityBolt.class,
             com.micatechnologies.minecraft.ldfl.client.render.RenderBolt::new);
+        RenderingRegistry.registerEntityRenderingHandler(
+            com.micatechnologies.minecraft.ldfl.entity.EntityHealBeam.class,
+            com.micatechnologies.minecraft.ldfl.client.render.RenderHealBeam::new);
+        RenderingRegistry.registerEntityRenderingHandler(
+            com.micatechnologies.minecraft.ldfl.entity.EntityBloomFlask.class,
+            com.micatechnologies.minecraft.ldfl.client.render.RenderBloomFlask::new);
     }
 
     @Override
