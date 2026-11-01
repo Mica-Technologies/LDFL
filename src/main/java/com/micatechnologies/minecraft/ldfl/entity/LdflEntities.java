@@ -48,5 +48,11 @@ public final class LdflEntities {
             .name(LdflConstants.MOD_NAMESPACE + ".bloom_flask")
             .tracker(64, 2, true)
             .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+            .entity(EntityWardBell.class)
+            .id(new ResourceLocation(LdflConstants.MOD_NAMESPACE, "ward_bell"), 5)
+            .name(LdflConstants.MOD_NAMESPACE + ".ward_bell")
+            .tracker(64, 20, false)
+            .build());
     }
 }

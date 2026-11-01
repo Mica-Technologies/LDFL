@@ -1,11 +1,7 @@
 package com.micatechnologies.minecraft.ldfl.hero;
 
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
-import com.micatechnologies.minecraft.ldfl.hero.bulwark.BarrierLogic;
-import com.micatechnologies.minecraft.ldfl.hero.bulwark.BulwarkKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.AbilitySlot;
-import com.micatechnologies.minecraft.ldfl.hero.forgewright.ForgewrightKit;
-import com.micatechnologies.minecraft.ldfl.hero.solace.SolaceKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroResolver;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroSpec;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroState;
@@ -21,6 +17,8 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -39,9 +37,30 @@ public final class HeroEvents {
     /** Ticks between unconditional resyncs while a hero is active (cooldowns drift otherwise). */
     private static final int RESYNC_INTERVAL = 40;
 
+    /** Kestrel's "Marked" effect: the target takes extra damage. */
+    public static final PotionMarked MARKED = new PotionMarked();
+
     @SubscribeEvent
     public void onRegisterPotions(RegistryEvent.Register<Potion> event) {
         event.getRegistry().register(WOUNDED);
+        event.getRegistry().register(MARKED);
+    }
+
+    @SubscribeEvent
+    public void onLivingHurt(LivingHurtEvent event) {
+        if (event.getEntityLiving().isPotionActive(MARKED)) {
+            event.setAmount((float) (event.getAmount() * (1.0D + LdflConfig.kestrel.markedDamageBonus)));
+        }
+    }
+
+    @SubscribeEvent
+    public void onLivingFall(LivingFallEvent event) {
+        if (event.getEntityLiving() instanceof EntityPlayer) {
+            HeroData data = HeroCapability.get((EntityPlayer) event.getEntityLiving());
+            if (data != null && data.noFallTicks > 0) {
+                event.setDistance(0.0F);
+            }
+        }
     }
 
     // --- Per-tick loop -----------------------------------------------------------------------
@@ -71,31 +90,25 @@ public final class HeroEvents {
         }
 
         state.tick();
+        // Fall protection lasts the whole flight and runs out only once the player is back on the
+        // ground, so a long glide down is still covered.
+        if (data.noFallTicks > 0 && player.onGround) {
+            data.noFallTicks--;
+        }
 
         if (def != null && def.spec().role() == Role.SUPPORT) {
             tickSupportRegen(player, data);
         }
-        if (def != Heroes.BULWARK) {
-            BarrierLogic.lower(player, data);
-        }
-        if (def != Heroes.FORGEWRIGHT) {
-            data.surgeTicks = 0;
-        }
-        if (def != Heroes.SOLACE) {
-            SolaceKit.stopBeam(data);
-        }
-        if (def == Heroes.BULWARK) {
-            if (data.chargeTicks > 0) {
-                BulwarkKit.tickRush(player, data);
+        // Every other hero tears down what it left behind; the active one ticks. A hero with a HUD
+        // resource sets it in its tick, so it starts each tick as "none".
+        data.resource = -1.0F;
+        for (HeroDefinition other : HeroRegistry.all()) {
+            if (other != def) {
+                other.cleanup(player, data);
             }
-            BarrierLogic.tickOwner(player, data);
-        } else if (def == Heroes.FORGEWRIGHT) {
-            ForgewrightKit.tick(player, data);
-        } else if (def == Heroes.SOLACE) {
-            SolaceKit.tick(player, data);
-            data.resource = -1.0F;
-        } else {
-            data.resource = -1.0F;
+        }
+        if (def != null) {
+            def.tick(player, data);
         }
 
         int ultPercent = (int) (state.ultCharge() * 100.0F);

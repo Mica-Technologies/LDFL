@@ -35,6 +35,10 @@ public class LdflClientProxy extends LdflCommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(
             com.micatechnologies.minecraft.ldfl.entity.EntityBloomFlask.class,
             com.micatechnologies.minecraft.ldfl.client.render.RenderBloomFlask::new);
+        RenderingRegistry.registerEntityRenderingHandler(
+            com.micatechnologies.minecraft.ldfl.entity.EntityWardBell.class,
+            com.micatechnologies.minecraft.ldfl.client.render.RenderWardBell::new);
+        MinecraftForge.EVENT_BUS.register(new com.micatechnologies.minecraft.ldfl.client.KestrelClient());
     }
 
     @Override

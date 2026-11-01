@@ -42,6 +42,18 @@ public final class HeroData {
     /** Solace: the active heal beam, or {@code null}. Server side only. */
     public com.micatechnologies.minecraft.ldfl.entity.EntityHealBeam beam;
 
+    /** Monolith: ticks left of Bedrock Anchor. */
+    public int anchorTicks;
+
+    /** Kestrel: ticks left of Long Vigil. */
+    public int vigilTicks;
+
+    /** Ticks during which falling deals no damage (Kestrel's Updraft). */
+    public int noFallTicks;
+
+    /** Chime: the placed Ward Bell, or {@code null}. Server side only. */
+    public com.micatechnologies.minecraft.ldfl.entity.EntityWardBell wardBell;
+
     /** Forgewright: the deployed sentry, or {@code null}. Server side only. */
     public com.micatechnologies.minecraft.ldfl.entity.EntitySentry sentry;
 

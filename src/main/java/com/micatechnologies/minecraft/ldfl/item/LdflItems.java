@@ -21,6 +21,10 @@ public final class LdflItems {
     public static final Item BOLT_DRIVER = add(new ItemBoltDriver(), "bolt_driver");
     public static final Item TINKERS_WRENCH = add(new ItemTinkersWrench(), "tinkers_wrench");
     public static final Item SOLACE_STAFF = add(new ItemSolaceStaff(), "solace_staff");
+    public static final Item CRAGFIST = add(
+        new ItemHeroMelee(com.micatechnologies.minecraft.ldfl.hero.Heroes.MONOLITH_ID, 8.0D, -2.9D), "cragfist");
+    public static final Item LONGSHOT_RIFLE = add(new ItemLongshotRifle(), "longshot_rifle");
+    public static final Item TUNING_ROD = add(new ItemTuningRod(), "tuning_rod");
 
     private LdflItems() {
     }

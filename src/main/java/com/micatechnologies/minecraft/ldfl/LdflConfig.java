@@ -34,6 +34,109 @@ public final class LdflConfig {
     @Config.Comment("Solace (Support) tuning.")
     public static final Solace solace = new Solace();
 
+    @Config.Comment("Monolith (Tank) tuning.")
+    public static final Monolith monolith = new Monolith();
+
+    @Config.Comment("Kestrel (Damage) tuning.")
+    public static final Kestrel kestrel = new Kestrel();
+
+    @Config.Comment("Chime (Support) tuning.")
+    public static final Chime chime = new Chime();
+
+    public static final class Monolith {
+        @Config.Comment("Stone Skin cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double stoneSkinCooldown = 12.0D;
+
+        @Config.Comment("Stone Skin absorption, in health points (2 = one heart).")
+        @Config.RangeInt(min = 0, max = 40)
+        public int stoneSkinAbsorption = 8;
+
+        @Config.Comment("Upheaval cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double upheavalCooldown = 10.0D;
+
+        @Config.Comment("Seconds an Upheaval wall stands before crumbling.")
+        @Config.RangeDouble(min = 1, max = 60)
+        public double upheavalSeconds = 6.0D;
+
+        @Config.Comment("Bedrock Anchor (ultimate) duration, seconds.")
+        @Config.RangeDouble(min = 1, max = 60)
+        public double anchorSeconds = 6.0D;
+
+        @Config.Comment("Radius, in blocks, in which Bedrock Anchor taunts hostile mobs.")
+        @Config.RangeDouble(min = 1, max = 48)
+        public double tauntRadius = 16.0D;
+
+        @Config.Comment("Damage dealt to fill the ultimate meter.")
+        @Config.RangeDouble(min = 1, max = 10000)
+        public double ultCost = 180.0D;
+    }
+
+    public static final class Kestrel {
+        @Config.Comment("Longshot damage at no charge.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double longshotMinDamage = 4.0D;
+
+        @Config.Comment("Longshot damage at full charge.")
+        @Config.RangeDouble(min = 0, max = 200)
+        public double longshotMaxDamage = 16.0D;
+
+        @Config.Comment("Seconds to fully charge a Longshot (halved during Long Vigil).")
+        @Config.RangeDouble(min = 0.1, max = 10)
+        public double longshotChargeSeconds = 1.5D;
+
+        @Config.Comment("Updraft cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double updraftCooldown = 8.0D;
+
+        @Config.Comment("Marker Dart cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double markerDartCooldown = 10.0D;
+
+        @Config.Comment("Seconds a Marker Dart leaves its target marked.")
+        @Config.RangeDouble(min = 1, max = 60)
+        public double markedSeconds = 6.0D;
+
+        @Config.Comment("Extra damage a Marked target takes (0.3 = +30%).")
+        @Config.RangeDouble(min = 0, max = 5)
+        public double markedDamageBonus = 0.3D;
+
+        @Config.Comment("Long Vigil (ultimate) duration, seconds.")
+        @Config.RangeDouble(min = 1, max = 60)
+        public double vigilSeconds = 8.0D;
+
+        @Config.Comment("Damage dealt to fill the ultimate meter.")
+        @Config.RangeDouble(min = 1, max = 10000)
+        public double ultCost = 220.0D;
+    }
+
+    public static final class Chime {
+        @Config.Comment("Tuning Rod orb damage.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double orbDamage = 3.5D;
+
+        @Config.Comment("Resonance cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double resonanceCooldown = 14.0D;
+
+        @Config.Comment("Ward Bell cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double wardBellCooldown = 16.0D;
+
+        @Config.Comment("Seconds a Ward Bell rings before it fades.")
+        @Config.RangeDouble(min = 1, max = 60)
+        public double wardBellSeconds = 10.0D;
+
+        @Config.Comment("Crescendo (ultimate) duration, seconds.")
+        @Config.RangeDouble(min = 1, max = 30)
+        public double crescendoSeconds = 3.0D;
+
+        @Config.Comment("Damage dealt plus support given to fill the ultimate meter.")
+        @Config.RangeDouble(min = 1, max = 10000)
+        public double ultCost = 200.0D;
+    }
+
     public static final class Combat {
         @Config.Comment({"When true, hero abilities and turrets also affect players.",
             "Players on the same scoreboard team are never targeted.",

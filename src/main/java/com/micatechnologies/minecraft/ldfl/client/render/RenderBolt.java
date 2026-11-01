@@ -24,6 +24,10 @@ public class RenderBolt extends Render<EntityBolt> {
 
     @Override
     public void doRender(EntityBolt e, double x, double y, double z, float yaw, float partialTicks) {
+        if (e.isOrb()) {
+            renderOrb(e, x, y, z, partialTicks);
+            return;
+        }
         double mx = e.motionX;
         double my = e.motionY;
         double mz = e.motionZ;
@@ -64,6 +68,50 @@ public class RenderBolt extends Render<EntityBolt> {
         GlStateManager.enableTexture2D();
         GlStateManager.popMatrix();
         super.doRender(e, x, y, z, yaw, partialTicks);
+    }
+
+    /** Chime's orb: a small spinning cube inside a pulsing translucent shell. */
+    private static void renderOrb(EntityBolt e, double x, double y, double z, float partialTicks) {
+        float t = e.ticksExisted + partialTicks;
+        double shell = 0.16D + Math.sin(t * 0.8D) * 0.03D;
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(x, y + 0.1D, z);
+        GlStateManager.rotate(t * 20.0F, 0.3F, 1.0F, 0.2F);
+        GlStateManager.disableTexture2D();
+        GlStateManager.disableLighting();
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0F, 240.0F);
+        Tessellator tess = Tessellator.getInstance();
+        BufferBuilder buf = tess.getBuffer();
+        buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+        Boxes.box(buf, -0.07D, -0.07D, -0.07D, 0.07D, 0.07D, 0.07D, 0xFFF1A8);
+        tess.draw();
+        GlStateManager.enableBlend();
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE);
+        GlStateManager.depthMask(false);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 0.35F);
+        buf.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION);
+        shellBox(buf, shell);
+        tess.draw();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        GlStateManager.depthMask(true);
+        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA,
+            GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        GlStateManager.disableBlend();
+        GlStateManager.enableLighting();
+        GlStateManager.enableTexture2D();
+        GlStateManager.popMatrix();
+    }
+
+    private static void shellBox(BufferBuilder b, double s) {
+        double[][] faces = {
+            {-s, s, -s, -s, s, s, s, s, s, s, s, -s}, {-s, -s, -s, s, -s, -s, s, -s, s, -s, -s, s},
+            {-s, -s, -s, -s, s, -s, s, s, -s, s, -s, -s}, {-s, -s, s, s, -s, s, s, s, s, -s, s, s},
+            {-s, -s, -s, -s, -s, s, -s, s, s, -s, s, -s}, {s, -s, -s, s, s, -s, s, s, s, s, -s, s}};
+        for (double[] f : faces) {
+            for (int i = 0; i < 12; i += 3) {
+                b.pos(f[i], f[i + 1], f[i + 2]).endVertex();
+            }
+        }
     }
 
     private static void ribbon(BufferBuilder buf, double hx, double hy, float r, float g, float b) {

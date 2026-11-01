@@ -27,6 +27,8 @@ public class EntityBolt extends EntityThrowable {
 
     private static final DataParameter<Boolean> IGNITE =
         EntityDataManager.createKey(EntityBolt.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ORB =
+        EntityDataManager.createKey(EntityBolt.class, DataSerializers.BOOLEAN);
     private static final int LIFETIME_TICKS = 40;
 
     private float damage = 4.0F;
@@ -54,10 +56,21 @@ public class EntityBolt extends EntityThrowable {
     protected void entityInit() {
         super.entityInit();
         dataManager.register(IGNITE, false);
+        dataManager.register(ORB, false);
     }
 
     public boolean isIgniting() {
         return dataManager.get(IGNITE);
+    }
+
+    /** Draw as a resonant orb (Chime's Tuning Rod) instead of a streak. Purely visual. */
+    public EntityBolt asOrb() {
+        dataManager.set(ORB, true);
+        return this;
+    }
+
+    public boolean isOrb() {
+        return dataManager.get(ORB);
     }
 
     /** Who this bolt's damage is credited to: the owning player if known, else the firer. */

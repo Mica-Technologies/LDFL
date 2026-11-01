@@ -36,6 +36,11 @@ public final class LdflBlocks {
         add(new BlockDecorStairs(HULL_PANEL_DARK.getDefaultState()), "hull_panel_dark_stairs");
     public static final Block MENDING_STATION = add(new BlockMendingStation(), "mending_station");
 
+    /** Monolith's temporary wall. Not in {@link #all()}: it has no item and no creative tab entry. */
+    public static final Block UPHEAVAL_STONE = new BlockUpheavalStone()
+        .setRegistryName(LdflConstants.MOD_NAMESPACE, "upheaval_stone")
+        .setTranslationKey(LdflConstants.MOD_NAMESPACE + ".upheaval_stone");
+
     private LdflBlocks() {
     }
 
@@ -56,6 +61,7 @@ public final class LdflBlocks {
         for (Block block : ALL) {
             event.getRegistry().register(block);
         }
+        event.getRegistry().register(UPHEAVAL_STONE);
     }
 
     @SubscribeEvent

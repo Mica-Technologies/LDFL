@@ -48,6 +48,9 @@ public final class ClientHero {
         for (AbilitySlot slot : AbilitySlot.values()) {
             while (LdflKeys.forSlot(slot).isPressed()) {
                 if (STATE.hero() != null) {
+                    if (STATE.check(slot) == HeroState.Activation.OK) {
+                        KestrelClient.onAbilityPressed(STATE.hero(), slot);
+                    }
                     LdflNetwork.CHANNEL.sendToServer(new PacketUseAbility(slot));
                 }
             }

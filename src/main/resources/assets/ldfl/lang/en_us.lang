@@ -51,3 +51,28 @@ tile.ldfl.grid_floor.name=Grid Floor
 tile.ldfl.vent_panel.name=Vent Panel
 tile.ldfl.objective_pad.name=Objective Pad
 tile.ldfl.mending_station.name=Mending Station
+
+item.ldfl.cragfist.name=Cragfist
+item.ldfl.longshot_rifle.name=Longshot Rifle
+item.ldfl.tuning_rod.name=Tuning Rod
+tile.ldfl.upheaval_stone.name=Upheaval Stone
+effect.ldfl.marked=Marked
+entity.ldfl.ward_bell.name=Ward Bell
+
+ldfl.hero.monolith=Monolith
+ldfl.resource.monolith=Anchor
+ldfl.ability.monolith.stone_skin=Stone Skin
+ldfl.ability.monolith.upheaval=Upheaval
+ldfl.ability.monolith.bedrock_anchor=Bedrock Anchor
+
+ldfl.hero.kestrel=Kestrel
+ldfl.resource.kestrel=Vigil
+ldfl.ability.kestrel.updraft=Updraft
+ldfl.ability.kestrel.marker_dart=Marker Dart
+ldfl.ability.kestrel.long_vigil=Long Vigil
+
+ldfl.hero.chime=Chime
+ldfl.resource.chime=Ward Bell
+ldfl.ability.chime.resonance=Resonance
+ldfl.ability.chime.ward_bell=Ward Bell
+ldfl.ability.chime.crescendo=Crescendo
