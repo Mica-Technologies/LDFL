@@ -1,6 +1,7 @@
 package com.micatechnologies.minecraft.ldfl.hero;
 
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
+import com.micatechnologies.minecraft.ldfl.hero.bulwark.BarrierLogic;
 import com.micatechnologies.minecraft.ldfl.hero.bulwark.BulwarkKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.AbilitySlot;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroResolver;
@@ -69,17 +70,22 @@ public final class HeroEvents {
 
         state.tick();
 
-        if (def != null) {
-            if (def.spec().role() == Role.SUPPORT) {
-                tickSupportRegen(player, data);
-            }
+        if (def != null && def.spec().role() == Role.SUPPORT) {
+            tickSupportRegen(player, data);
+        }
+        if (def == Heroes.BULWARK) {
             if (data.chargeTicks > 0) {
                 BulwarkKit.tickRush(player, data);
             }
+            BarrierLogic.tickOwner(player, data);
+        } else {
+            BarrierLogic.lower(player, data);
+            data.resource = -1.0F;
         }
 
         int ultPercent = (int) (state.ultCharge() * 100.0F);
-        if (ultPercent != data.lastSentUltPercent) {
+        int resourcePercent = (int) Math.floor(data.resource * 100.0F);
+        if (ultPercent != data.lastSentUltPercent || resourcePercent != data.lastSentResourcePercent) {
             data.dirty = true;
         }
         if (data.dirty || (def != null && player.ticksExisted % RESYNC_INTERVAL == 0)) {
@@ -132,9 +138,10 @@ public final class HeroEvents {
         HeroState state = data.state();
         LdflNetwork.CHANNEL.sendTo(new PacketHeroSync(
             state.hero() == null ? "" : state.hero().id(),
-            state.cooldownSnapshot(), state.ultCharge()), player);
+            state.cooldownSnapshot(), state.ultCharge(), data.resource), player);
         data.dirty = false;
         data.lastSentUltPercent = (int) (state.ultCharge() * 100.0F);
+        data.lastSentResourcePercent = (int) Math.floor(data.resource * 100.0F);
     }
 
     /**

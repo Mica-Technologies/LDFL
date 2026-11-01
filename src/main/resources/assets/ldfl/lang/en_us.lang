@@ -17,6 +17,8 @@ ldfl.role.support=Support
 ldfl.hud.ready=Ready
 
 ldfl.hero.bulwark=Bulwark
+ldfl.resource.bulwark=Barrier
+entity.ldfl.barrier.name=Barrier
 ldfl.ability.bulwark.shoulder_rush=Shoulder Rush
 ldfl.ability.bulwark.shockwave=Shockwave
 ldfl.ability.bulwark.fault_line=Fault Line

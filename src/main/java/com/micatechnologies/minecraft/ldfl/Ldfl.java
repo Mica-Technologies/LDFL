@@ -4,6 +4,7 @@ import com.micatechnologies.minecraft.ldfl.command.CommandLdfl;
 import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
 import com.micatechnologies.minecraft.ldfl.hero.HeroEvents;
 import com.micatechnologies.minecraft.ldfl.hero.Heroes;
+import com.micatechnologies.minecraft.ldfl.hero.bulwark.BarrierLogic;
 import com.micatechnologies.minecraft.ldfl.network.LdflNetwork;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -47,6 +48,7 @@ public class Ldfl {
         HeroCapability.register();
         MinecraftForge.EVENT_BUS.register(new HeroCapability.Attacher());
         MinecraftForge.EVENT_BUS.register(new HeroEvents());
+        MinecraftForge.EVENT_BUS.register(new BarrierLogic());
         proxy.preInit(event);
     }
 

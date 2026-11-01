@@ -27,8 +27,26 @@ public final class HeroData {
     /** Ult charge quantised to whole percent, as last sent to the client. */
     public int lastSentUltPercent = -1;
 
-    /** Fractional support regen carried between ticks. */
-    public float regenCarry;
+    /** Bulwark: barrier health, kept while the barrier is lowered. Starts full. */
+    public float barrierHealth = Float.NaN;
+
+    /** Bulwark: ticks before a broken barrier can be raised again. */
+    public int barrierBrokenTicks;
+
+    /** Bulwark: {@code player.ticksExisted} when the barrier last absorbed a hit. */
+    public int barrierLastHitTick = Integer.MIN_VALUE / 2;
+
+    /** Bulwark: the raised barrier panel, or {@code null} while lowered. Server side only. */
+    public com.micatechnologies.minecraft.ldfl.entity.EntityBarrier barrier;
+
+    /**
+     * The active hero's extra resource as a 0-1 fraction (Bulwark: barrier health), or -1 when the
+     * hero has none. Shown on the HUD.
+     */
+    public float resource = -1.0F;
+
+    /** {@link #resource} quantised to whole percent, as last sent to the client. */
+    public int lastSentResourcePercent = Integer.MIN_VALUE;
 
     public HeroState state() {
         return state;

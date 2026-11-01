@@ -20,11 +20,15 @@ public final class ClientHero {
 
     public static final HeroState STATE = new HeroState();
 
+    /** The hero's extra resource as 0-1 (Bulwark: barrier health), or -1 for none. */
+    public static float resource = -1.0F;
+
     /** Apply a server sync. Called on the client thread. */
     static void apply(PacketHeroSync msg) {
         HeroDefinition def = HeroRegistry.get(msg.heroId.isEmpty() ? null : msg.heroId);
         STATE.setHero(def == null ? null : def.spec());
         STATE.applySync(msg.cooldowns, msg.ultCharge);
+        resource = msg.resource;
     }
 
     @SubscribeEvent

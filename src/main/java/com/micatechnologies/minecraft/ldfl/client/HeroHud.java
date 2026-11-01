@@ -38,16 +38,30 @@ public final class HeroHud {
         }
         ScaledResolution res = event.getResolution();
         FontRenderer font = mc.fontRenderer;
+        float resource = ClientHero.resource;
+        int rows = resource >= 0.0F ? 7 : 6;
         int x = res.getScaledWidth() - WIDTH - 4;
-        int y = res.getScaledHeight() - 6 * ROW - 6;
+        int y = res.getScaledHeight() - rows * ROW - 6;
 
-        Gui.drawRect(x - 3, y - 3, x + WIDTH, y + 6 * ROW, 0x80000000);
+        Gui.drawRect(x - 3, y - 3, x + WIDTH, y + rows * ROW, 0x80000000);
 
         String ns = LdflConstants.MOD_NAMESPACE;
         font.drawStringWithShadow(I18n.format(ns + ".hero." + hero.id()), x, y, 0xFFFFFF);
         String role = I18n.format(ns + ".role." + hero.role().id());
         font.drawStringWithShadow(role, x + WIDTH - 4 - font.getStringWidth(role), y, roleColor(hero));
         y += ROW + 2;
+
+        if (resource >= 0.0F) {
+            String label = I18n.format(ns + ".resource." + hero.id());
+            font.drawStringWithShadow(label, x, y, 0xCFE8FF);
+            int labelW = font.getStringWidth(label) + 4;
+            int barX = x + labelW;
+            int barW = WIDTH - 4 - labelW;
+            int color = resource > 0.5F ? 0xFF5FD8FF : resource > 0.25F ? 0xFFFFC23F : 0xFFFF5A3F;
+            Gui.drawRect(barX, y + 2, barX + barW, y + 7, 0xFF333333);
+            Gui.drawRect(barX, y + 2, barX + (int) (barW * resource), y + 7, color);
+            y += ROW;
+        }
 
         for (AbilitySlot slot : new AbilitySlot[] {AbilitySlot.ABILITY_1, AbilitySlot.ABILITY_2}) {
             int cd = state.cooldown(slot);

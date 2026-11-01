@@ -19,14 +19,17 @@ public class PacketHeroSync implements IMessage {
     public String heroId = "";
     public int[] cooldowns = new int[AbilitySlot.values().length];
     public float ultCharge;
+    /** The hero's extra resource as 0-1 (Bulwark: barrier health), or -1 for none. */
+    public float resource = -1.0F;
 
     public PacketHeroSync() {
     }
 
-    public PacketHeroSync(String heroId, int[] cooldowns, float ultCharge) {
+    public PacketHeroSync(String heroId, int[] cooldowns, float ultCharge, float resource) {
         this.heroId = heroId == null ? "" : heroId;
         this.cooldowns = cooldowns;
         this.ultCharge = ultCharge;
+        this.resource = resource;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class PacketHeroSync implements IMessage {
             }
         }
         ultCharge = buf.readFloat();
+        resource = buf.readFloat();
     }
 
     @Override
@@ -51,6 +55,7 @@ public class PacketHeroSync implements IMessage {
             ByteBufUtils.writeVarInt(buf, c, 5);
         }
         buf.writeFloat(ultCharge);
+        buf.writeFloat(resource);
     }
 
     public static class Handler implements IMessageHandler<PacketHeroSync, IMessage> {
