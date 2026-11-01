@@ -2,6 +2,7 @@ package com.micatechnologies.minecraft.ldfl.hero;
 
 import com.micatechnologies.minecraft.ldfl.hero.bulwark.BulwarkKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.AbilitySpec;
+import com.micatechnologies.minecraft.ldfl.hero.forgewright.ForgewrightKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroSpec;
 import com.micatechnologies.minecraft.ldfl.hero.core.Role;
 
@@ -15,8 +16,10 @@ import com.micatechnologies.minecraft.ldfl.hero.core.Role;
 public final class Heroes {
 
     public static final String BULWARK_ID = "bulwark";
+    public static final String FORGEWRIGHT_ID = "forgewright";
 
     public static HeroDefinition BULWARK;
+    public static HeroDefinition FORGEWRIGHT;
 
     private Heroes() {
         throw new AssertionError("No instances.");
@@ -34,5 +37,13 @@ public final class Heroes {
                 new AbilitySpec("fault_line", 0),
                 160.0F),
             BulwarkKit::shoulderRush, BulwarkKit::shockwave, BulwarkKit::faultLine));
+
+        FORGEWRIGHT = HeroRegistry.register(new HeroDefinition(
+            new HeroSpec(FORGEWRIGHT_ID, Role.DAMAGE,
+                new AbilitySpec("deploy_sentry", seconds(10)),
+                new AbilitySpec("plating", seconds(12)),
+                new AbilitySpec("slag_surge", 0),
+                200.0F),
+            ForgewrightKit::deploySentry, ForgewrightKit::plating, ForgewrightKit::slagSurge));
     }
 }

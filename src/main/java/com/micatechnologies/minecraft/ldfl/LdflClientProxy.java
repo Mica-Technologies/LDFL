@@ -23,6 +23,12 @@ public class LdflClientProxy extends LdflCommonProxy {
         MinecraftForge.EVENT_BUS.register(new ClientHero());
         MinecraftForge.EVENT_BUS.register(new HeroHud());
         RenderingRegistry.registerEntityRenderingHandler(EntityBarrier.class, RenderBarrier::new);
+        RenderingRegistry.registerEntityRenderingHandler(
+            com.micatechnologies.minecraft.ldfl.entity.EntitySentry.class,
+            com.micatechnologies.minecraft.ldfl.client.render.RenderSentry::new);
+        RenderingRegistry.registerEntityRenderingHandler(
+            com.micatechnologies.minecraft.ldfl.entity.EntityBolt.class,
+            com.micatechnologies.minecraft.ldfl.client.render.RenderBolt::new);
     }
 
     @Override

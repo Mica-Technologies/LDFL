@@ -2,6 +2,8 @@ itemGroup.ldfl=Frontline Heroes
 
 item.ldfl.rampart_shield.name=Rampart Shield
 item.ldfl.bulwark_maul.name=Bulwark Maul
+item.ldfl.bolt_driver.name=Bolt Driver
+item.ldfl.tinkers_wrench.name=Tinker's Wrench
 
 effect.ldfl.wounded=Wounded
 
@@ -22,3 +24,11 @@ entity.ldfl.barrier.name=Barrier
 ldfl.ability.bulwark.shoulder_rush=Shoulder Rush
 ldfl.ability.bulwark.shockwave=Shockwave
 ldfl.ability.bulwark.fault_line=Fault Line
+
+ldfl.hero.forgewright=Forgewright
+ldfl.resource.forgewright=Sentry
+entity.ldfl.sentry.name=Sentry
+entity.ldfl.bolt.name=Bolt
+ldfl.ability.forgewright.deploy_sentry=Deploy Sentry
+ldfl.ability.forgewright.plating=Plating
+ldfl.ability.forgewright.slag_surge=Slag Surge

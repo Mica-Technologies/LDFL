@@ -4,6 +4,7 @@ import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.bulwark.BarrierLogic;
 import com.micatechnologies.minecraft.ldfl.hero.bulwark.BulwarkKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.AbilitySlot;
+import com.micatechnologies.minecraft.ldfl.hero.forgewright.ForgewrightKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroResolver;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroSpec;
 import com.micatechnologies.minecraft.ldfl.hero.core.HeroState;
@@ -73,13 +74,20 @@ public final class HeroEvents {
         if (def != null && def.spec().role() == Role.SUPPORT) {
             tickSupportRegen(player, data);
         }
+        if (def != Heroes.BULWARK) {
+            BarrierLogic.lower(player, data);
+        }
+        if (def != Heroes.FORGEWRIGHT) {
+            data.surgeTicks = 0;
+        }
         if (def == Heroes.BULWARK) {
             if (data.chargeTicks > 0) {
                 BulwarkKit.tickRush(player, data);
             }
             BarrierLogic.tickOwner(player, data);
+        } else if (def == Heroes.FORGEWRIGHT) {
+            ForgewrightKit.tick(player, data);
         } else {
-            BarrierLogic.lower(player, data);
             data.resource = -1.0F;
         }
 

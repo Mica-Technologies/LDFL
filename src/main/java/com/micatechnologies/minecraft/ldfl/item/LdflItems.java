@@ -18,6 +18,8 @@ public final class LdflItems {
 
     public static final Item RAMPART_SHIELD = add(new ItemRampartShield(), "rampart_shield");
     public static final Item BULWARK_MAUL = add(new ItemBulwarkMaul(), "bulwark_maul");
+    public static final Item BOLT_DRIVER = add(new ItemBoltDriver(), "bolt_driver");
+    public static final Item TINKERS_WRENCH = add(new ItemTinkersWrench(), "tinkers_wrench");
 
     private LdflItems() {
     }

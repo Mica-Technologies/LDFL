@@ -24,5 +24,17 @@ public final class LdflEntities {
             // Update every tick: the panel follows its owner's facing.
             .tracker(96, 1, false)
             .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+            .entity(EntitySentry.class)
+            .id(new ResourceLocation(LdflConstants.MOD_NAMESPACE, "sentry"), 1)
+            .name(LdflConstants.MOD_NAMESPACE + ".sentry")
+            .tracker(80, 2, false)
+            .build());
+        event.getRegistry().register(EntityEntryBuilder.create()
+            .entity(EntityBolt.class)
+            .id(new ResourceLocation(LdflConstants.MOD_NAMESPACE, "bolt"), 2)
+            .name(LdflConstants.MOD_NAMESPACE + ".bolt")
+            .tracker(64, 1, true)
+            .build());
     }
 }

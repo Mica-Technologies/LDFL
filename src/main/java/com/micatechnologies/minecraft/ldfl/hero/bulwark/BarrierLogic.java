@@ -2,6 +2,7 @@ package com.micatechnologies.minecraft.ldfl.hero.bulwark;
 
 import com.micatechnologies.minecraft.ldfl.Ldfl;
 import com.micatechnologies.minecraft.ldfl.entity.EntityBarrier;
+import com.micatechnologies.minecraft.ldfl.entity.EntityBolt;
 import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
 import com.micatechnologies.minecraft.ldfl.hero.Targeting;
@@ -199,6 +200,10 @@ public final class BarrierLogic {
     }
 
     private static Entity shooterOf(Entity p) {
+        if (p instanceof EntityBolt) {
+            // A sentry's bolt counts as its owner's shot.
+            return ((EntityBolt) p).getCreditedShooter();
+        }
         if (p instanceof EntityArrow) {
             return ((EntityArrow) p).shootingEntity;
         }

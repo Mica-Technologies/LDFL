@@ -39,6 +39,12 @@ public final class HeroData {
     /** Bulwark: the raised barrier panel, or {@code null} while lowered. Server side only. */
     public com.micatechnologies.minecraft.ldfl.entity.EntityBarrier barrier;
 
+    /** Forgewright: the deployed sentry, or {@code null}. Server side only. */
+    public com.micatechnologies.minecraft.ldfl.entity.EntitySentry sentry;
+
+    /** Forgewright: ticks left of the Slag Surge ultimate. */
+    public int surgeTicks;
+
     /**
      * The active hero's extra resource as a 0-1 fraction (Bulwark: barrier health), or -1 when the
      * hero has none. Shown on the HUD.
