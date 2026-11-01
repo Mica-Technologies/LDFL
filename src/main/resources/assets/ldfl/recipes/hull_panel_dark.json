@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [ "PPP", "PCP", "PPP" ],
-  "key": { "P": { "item": "ldfl:hull_panel_light" }, "C": { "item": "minecraft:coal" } },
+  "key": { "P": { "item": "ldfl:hull_panel_light" }, "C": { "item": "minecraft:coal", "data": 0 } },
   "result": { "item": "ldfl:hull_panel_dark", "count": 8 }
 }

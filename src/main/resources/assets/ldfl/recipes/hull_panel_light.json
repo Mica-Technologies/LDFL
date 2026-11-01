@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [ "SSS", "SIS", "SSS" ],
-  "key": { "S": { "item": "minecraft:stone" }, "I": { "item": "minecraft:iron_ingot" } },
+  "key": { "S": { "item": "minecraft:stone", "data": 0 }, "I": { "item": "minecraft:iron_ingot" } },
   "result": { "item": "ldfl:hull_panel_light", "count": 8 }
 }
