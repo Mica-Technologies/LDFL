@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.client;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.hero.HeroDefinition;
 import com.micatechnologies.minecraft.ldfl.hero.HeroRegistry;
 import com.micatechnologies.minecraft.ldfl.hero.core.AbilitySlot;
@@ -26,9 +27,14 @@ public final class ClientHero {
     /** Apply a server sync. Called on the client thread. */
     static void apply(PacketHeroSync msg) {
         HeroDefinition def = HeroRegistry.get(msg.heroId.isEmpty() ? null : msg.heroId);
-        STATE.setHero(def == null ? null : def.spec());
+        boolean heroChanged = STATE.setHero(def == null ? null : def.spec());
+        boolean wasReady = STATE.ultReady();
         STATE.applySync(msg.cooldowns, msg.ultCharge);
         resource = msg.resource;
+        // A short chime, heard only by this player, the moment the ultimate becomes ready.
+        if (!heroChanged && !wasReady && STATE.ultReady() && Minecraft.getMinecraft().player != null) {
+            Minecraft.getMinecraft().player.playSound(LdflSounds.ULT_READY, 0.8F, 1.0F);
+        }
     }
 
     @SubscribeEvent

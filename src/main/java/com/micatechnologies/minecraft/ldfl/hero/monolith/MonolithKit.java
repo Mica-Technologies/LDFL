@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.monolith;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.block.LdflBlocks;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
@@ -13,7 +14,6 @@ import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -47,7 +47,7 @@ public final class MonolithKit {
     public static boolean stoneSkin(EntityPlayerMP p, HeroData data) {
         int amplifier = Math.max(0, LdflConfig.monolith.stoneSkinAbsorption / 4 - 1);
         p.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, STONE_SKIN_TICKS, amplifier));
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.BLOCK_STONE_PLACE,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.STONE_SKIN,
             SoundCategory.PLAYERS, 1.0F, 0.6F);
         p.getServerWorld().spawnParticle(EnumParticleTypes.BLOCK_CRACK, p.posX, p.posY + 1.0D, p.posZ,
             20, 0.4D, 0.6D, 0.4D, 0.05D, Block.getStateId(Blocks.STONE.getDefaultState()));
@@ -80,7 +80,7 @@ public final class MonolithKit {
             }
         }
         if (placed > 0) {
-            world.playSound(null, centre.x, centre.y, centre.z, SoundEvents.ENTITY_ZOMBIE_BREAK_DOOR_WOOD,
+            world.playSound(null, centre.x, centre.y, centre.z, LdflSounds.UPHEAVAL,
                 SoundCategory.PLAYERS, 0.7F, 0.5F);
             world.spawnParticle(EnumParticleTypes.BLOCK_CRACK, centre.x, centre.y + 0.5D, centre.z, 40,
                 1.5D, 0.5D, 1.5D, 0.1D, Block.getStateId(Blocks.STONE.getDefaultState()));
@@ -100,7 +100,7 @@ public final class MonolithKit {
         p.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, ticks, 0));
         setKnockbackImmune(p, true);
         taunt(p);
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.BLOCK_ANVIL_LAND,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.BEDROCK_ANCHOR,
             SoundCategory.PLAYERS, 1.0F, 0.5F);
         return true;
     }

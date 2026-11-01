@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.block;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -59,7 +60,7 @@ public class BlockMendingStation extends Block {
         player.heal(HEAL);
         world.setBlockState(pos, state.withProperty(CHARGED, false));
         world.scheduleUpdate(pos, this, RECHARGE_TICKS);
-        world.playSound(null, pos, SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 0.5F, 1.6F);
+        world.playSound(null, pos, LdflSounds.MENDING, SoundCategory.BLOCKS, 0.5F, 1.6F);
     }
 
     @Override

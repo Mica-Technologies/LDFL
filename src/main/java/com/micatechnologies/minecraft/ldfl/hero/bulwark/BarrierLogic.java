@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.bulwark;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.Ldfl;
 import com.micatechnologies.minecraft.ldfl.entity.EntityBarrier;
@@ -75,7 +76,7 @@ public final class BarrierLogic {
             Ldfl.LOGGER.debug("Barrier raised for {} (spawned={}, health={})", player.getName(),
                 spawned, data.barrierHealth);
             player.world.playSound(null, player.posX, player.posY, player.posZ,
-                SoundEvents.BLOCK_IRON_TRAPDOOR_OPEN, SoundCategory.PLAYERS, 0.6F, 1.6F);
+                LdflSounds.BARRIER_RAISE, SoundCategory.PLAYERS, 0.6F, 1.6F);
         } else if (!wantsRaised) {
             lower(player, data);
         }
@@ -118,9 +119,9 @@ public final class BarrierLogic {
             data.barrierBrokenTicks = LdflConfig.ticks(LdflConfig.bulwark.barrierBrokenSeconds);
             lower(owner, data);
             world.playSound(null, barrier.posX, barrier.posY, barrier.posZ,
-                SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1.2F, 0.7F);
+                LdflSounds.BARRIER_BREAK, SoundCategory.PLAYERS, 1.2F, 0.7F);
         } else {
-            world.playSound(null, at.x, at.y, at.z, SoundEvents.BLOCK_GLASS_HIT,
+            world.playSound(null, at.x, at.y, at.z, LdflSounds.BARRIER_HIT,
                 SoundCategory.PLAYERS, 0.8F, 1.4F);
             barrier.setHealthFraction(data.barrierHealth / maxHealth());
         }

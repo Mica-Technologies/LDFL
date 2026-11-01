@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.kestrel;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
@@ -10,7 +11,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
@@ -66,7 +66,7 @@ public final class KestrelKit {
             }
         }
         HitScan.tracer(p, shot.end, power >= 1.0F ? EnumParticleTypes.END_ROD : EnumParticleTypes.CRIT);
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_FIREWORK_BLAST,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.LONGSHOT,
             SoundCategory.PLAYERS, 0.6F + power * 0.6F, 1.6F - power * 0.6F);
     }
 
@@ -77,7 +77,7 @@ public final class KestrelKit {
         data.noFallTicks = 10;
         p.getServerWorld().spawnParticle(EnumParticleTypes.CLOUD, p.posX, p.posY, p.posZ, 16,
             0.4D, 0.1D, 0.4D, 0.05D);
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_ENDERDRAGON_FLAP,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.UPDRAFT,
             SoundCategory.PLAYERS, 0.8F, 1.4F);
         return true;
     }
@@ -85,7 +85,7 @@ public final class KestrelKit {
     public static boolean markerDart(EntityPlayerMP p, HeroData data) {
         HitScan.Result shot = HitScan.enemiesAlongAim(p, DART_RANGE);
         HitScan.tracer(p, shot.end, EnumParticleTypes.SPELL_INSTANT);
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_ARROW_SHOOT,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.MARKER_DART,
             SoundCategory.PLAYERS, 0.7F, 1.8F);
         if (!shot.enemies.isEmpty()) {
             EntityLivingBase target = shot.enemies.get(0);
@@ -105,7 +105,7 @@ public final class KestrelKit {
                 e.addPotionEffect(new PotionEffect(MobEffects.GLOWING, ticks, 0, false, false));
             }
         }
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_ELDER_GUARDIAN_CURSE,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.LONG_VIGIL,
             SoundCategory.PLAYERS, 0.6F, 1.6F);
         return true;
     }

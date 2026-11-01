@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.solace;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.entity.EntityBloomFlask;
 import com.micatechnologies.minecraft.ldfl.entity.EntityHealBeam;
@@ -147,7 +148,7 @@ public final class SolaceKit {
         }
         p.getServerWorld().spawnParticle(EnumParticleTypes.CLOUD, p.posX, p.posY + 0.2D, p.posZ, 20,
             2.0D, 0.1D, 2.0D, 0.05D);
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_ENDERDRAGON_FLAP,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.TAILWIND,
             SoundCategory.PLAYERS, 0.6F, 1.6F);
         return true;
     }
@@ -170,7 +171,7 @@ public final class SolaceKit {
             world.spawnParticle(EnumParticleTypes.END_ROD, p.posX + Math.cos(a) * 3.0D, p.posY + 0.2D,
                 p.posZ + Math.sin(a) * 3.0D, 1, 0.0D, 0.2D, 0.0D, 0.02D);
         }
-        world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_PLAYER_LEVELUP,
+        world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.SANCTUARY,
             SoundCategory.PLAYERS, 1.0F, 0.8F);
         return true;
     }

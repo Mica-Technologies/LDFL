@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.entity;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
@@ -150,7 +151,7 @@ public class EntitySentry extends EntityLiving {
             EntityBolt bolt = new EntityBolt(world, this, owner, (float) LdflConfig.forgewright.sentryBoltDamage, surging);
             bolt.shoot(dx, dy, dz, 2.2F, 1.0F);
             world.spawnEntity(bolt);
-            world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_SHULKER_SHOOT,
+            world.playSound(null, posX, posY, posZ, LdflSounds.SENTRY_FIRE,
                 SoundCategory.HOSTILE, 0.5F, 1.6F);
             fireCooldown = surging ? Math.max(1, LdflConfig.forgewright.sentryFireIntervalTicks / 2) : LdflConfig.forgewright.sentryFireIntervalTicks;
         }

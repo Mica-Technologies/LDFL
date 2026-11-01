@@ -1,12 +1,12 @@
 package com.micatechnologies.minecraft.ldfl.entity;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.HeroEvents;
 import com.micatechnologies.minecraft.ldfl.hero.Targeting;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -62,7 +62,7 @@ public class EntityBloomFlask extends EntityThrowable {
             RADIUS * 0.4D, 0.5D, RADIUS * 0.4D, 0.0D);
         ws.spawnParticle(EnumParticleTypes.SPELL_INSTANT, posX, posY + 0.3D, posZ, 20,
             RADIUS * 0.3D, 0.3D, RADIUS * 0.3D, 0.0D);
-        world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_SPLASH_POTION_BREAK,
+        world.playSound(null, posX, posY, posZ, LdflSounds.FLASK_BURST,
             SoundCategory.PLAYERS, 1.0F, 1.2F);
         setDead();
     }

@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.entity;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.HeroEvents;
 import com.micatechnologies.minecraft.ldfl.hero.Targeting;
@@ -8,7 +9,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
@@ -68,7 +68,7 @@ public class EntityWardBell extends Entity {
                 HeroEvents.creditHealing(owner, 1.0F);
             }
         }
-        world.playSound(null, posX, posY, posZ, SoundEvents.BLOCK_NOTE_BELL, SoundCategory.PLAYERS,
+        world.playSound(null, posX, posY, posZ, LdflSounds.WARD_BELL, SoundCategory.PLAYERS,
             0.8F, 1.0F + rand.nextFloat() * 0.2F);
         ((WorldServer) world).spawnParticle(EnumParticleTypes.NOTE, posX, posY + 1.0D, posZ, 6,
             RADIUS * 0.3D, 0.2D, RADIUS * 0.3D, 1.0D);

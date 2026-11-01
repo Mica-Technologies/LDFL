@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.bulwark;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
 import com.micatechnologies.minecraft.ldfl.hero.Targeting;
@@ -66,7 +67,7 @@ public final class BulwarkKit {
         }
         p.velocityChanged = true;
         data.chargeTicks = RUSH_TICKS;
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_IRONGOLEM_ATTACK,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.RUSH,
             SoundCategory.PLAYERS, 1.0F, 0.7F);
         return true;
     }
@@ -117,7 +118,7 @@ public final class BulwarkKit {
                 }
             }
         }
-        world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_BLAZE_SHOOT,
+        world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.SHOCKWAVE,
             SoundCategory.PLAYERS, 1.0F, 0.6F);
         return true;
     }
@@ -150,7 +151,7 @@ public final class BulwarkKit {
             world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, at.x, at.y, at.z, 4,
                 0.4D * i / SLAM_RANGE + 0.2D, 0.1D, 0.4D * i / SLAM_RANGE + 0.2D, 0.02D);
         }
-        world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE,
+        world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.TECTONIC_SLAM,
             SoundCategory.PLAYERS, 1.0F, 0.6F);
         return true;
     }

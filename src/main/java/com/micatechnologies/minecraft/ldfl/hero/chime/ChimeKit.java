@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.chime;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.entity.EntityWardBell;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
@@ -8,7 +9,6 @@ import com.micatechnologies.minecraft.ldfl.hero.Targeting;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -49,7 +49,7 @@ public final class ChimeKit {
         HeroEvents.creditHealing(p, buffed * 2.0F);
         p.getServerWorld().spawnParticle(EnumParticleTypes.NOTE, p.posX, p.posY + 1.5D, p.posZ, 12,
             2.0D, 0.5D, 2.0D, 1.0D);
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.BLOCK_NOTE_CHIME,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.RESONANCE,
             SoundCategory.PLAYERS, 1.0F, 1.2F);
         return true;
     }
@@ -75,9 +75,9 @@ public final class ChimeKit {
                     0.4D, 0.2D, 0.4D, 1.0D);
             }
         }
-        world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.BLOCK_NOTE_BELL,
+        world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.CRESCENDO,
             SoundCategory.PLAYERS, 1.5F, 0.5F);
-        world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.BLOCK_NOTE_BELL,
+        world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.CRESCENDO,
             SoundCategory.PLAYERS, 1.5F, 1.0F);
         return true;
     }

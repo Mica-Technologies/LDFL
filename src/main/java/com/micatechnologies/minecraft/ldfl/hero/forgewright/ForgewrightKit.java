@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.forgewright;
 
+import com.micatechnologies.minecraft.ldfl.LdflSounds;
 import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.entity.EntitySentry;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
@@ -59,7 +60,7 @@ public final class ForgewrightKit {
         removeExisting(p, data);
         world.spawnEntity(sentry);
         data.sentry = sentry;
-        world.playSound(null, sentry.posX, sentry.posY, sentry.posZ, SoundEvents.BLOCK_ANVIL_PLACE,
+        world.playSound(null, sentry.posX, sentry.posY, sentry.posZ, LdflSounds.SENTRY_DEPLOY,
             SoundCategory.PLAYERS, 0.5F, 1.4F);
         world.spawnParticle(EnumParticleTypes.CLOUD, sentry.posX, sentry.posY + 0.3D, sentry.posZ, 6,
             0.3D, 0.1D, 0.3D, 0.02D);
@@ -92,7 +93,7 @@ public final class ForgewrightKit {
 
     public static boolean slagSurge(EntityPlayerMP p, HeroData data) {
         data.surgeTicks = LdflConfig.ticks(LdflConfig.forgewright.slagSurgeSeconds);
-        p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_BLAZE_AMBIENT,
+        p.world.playSound(null, p.posX, p.posY, p.posZ, LdflSounds.SLAG_SURGE,
             SoundCategory.PLAYERS, 1.0F, 0.7F);
         p.getServerWorld().spawnParticle(EnumParticleTypes.LAVA, p.posX, p.posY + 1.0D, p.posZ, 12,
             0.4D, 0.4D, 0.4D, 0.0D);
