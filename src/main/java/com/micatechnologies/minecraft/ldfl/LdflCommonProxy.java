@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl;
 
+import com.micatechnologies.minecraft.ldfl.network.PacketHeroSync;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
@@ -12,5 +13,9 @@ public class LdflCommonProxy implements LdflProxy {
 
     @Override
     public void init(FMLInitializationEvent event) {
+    }
+
+    @Override
+    public void onHeroSync(PacketHeroSync message) {
     }
 }

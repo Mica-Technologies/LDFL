@@ -1,0 +1,22 @@
+itemGroup.ldfl=Frontline Heroes
+
+item.ldfl.rampart_shield.name=Rampart Shield
+item.ldfl.bulwark_maul.name=Bulwark Maul
+
+effect.ldfl.wounded=Wounded
+
+key.categories.ldfl=Frontline Heroes
+key.ldfl.ability_1=Hero Ability 1
+key.ldfl.ability_2=Hero Ability 2
+key.ldfl.ultimate=Hero Ultimate
+
+ldfl.role.tank=Tank
+ldfl.role.damage=Damage
+ldfl.role.support=Support
+
+ldfl.hud.ready=Ready
+
+ldfl.hero.bulwark=Bulwark
+ldfl.ability.bulwark.shoulder_rush=Shoulder Rush
+ldfl.ability.bulwark.shockwave=Shockwave
+ldfl.ability.bulwark.fault_line=Fault Line

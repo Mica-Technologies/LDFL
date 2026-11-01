@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IGI",
+    "ISI",
+    "IDI"
+  ],
+  "key": {
+    "I": { "item": "minecraft:iron_ingot" },
+    "G": { "item": "minecraft:glass_pane" },
+    "S": { "item": "minecraft:shield" },
+    "D": { "item": "minecraft:diamond" }
+  },
+  "result": { "item": "ldfl:rampart_shield" }
+}

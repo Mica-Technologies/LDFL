@@ -65,8 +65,8 @@ client/      Keybinds, HUD, client hero mirror. Client-only; reached only via Ld
    hero, cooldown and ult charge, runs the ability, and syncs state back. The client mirror ticks
    cooldowns down locally only for a smooth HUD.
 4. **Hero data is not persisted.** Identity comes from held items. Role passive attribute
-   modifiers *are* saved by vanilla, so `HeroPassives` reconciles them on the first tick after
-   login. Keep that reconciliation idempotent.
+   modifiers are marked unsaved for the same reason, and `HeroPassives.reconcile` (run on the
+   first tick after login and on every hero change) removes before it adds. Keep it idempotent.
 5. **Friend-or-foe goes through `Targeting.isEnemy`.** Hostile mobs are always enemies; players
    only when `combat.pvp` is on and they are not on the same scoreboard team.
 

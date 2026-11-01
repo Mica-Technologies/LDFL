@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BSB",
+    " S "
+  ],
+  "key": {
+    "B": { "item": "minecraft:iron_block" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": { "item": "ldfl:bulwark_maul" }
+}

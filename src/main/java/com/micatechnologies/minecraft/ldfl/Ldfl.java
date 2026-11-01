@@ -1,5 +1,10 @@
 package com.micatechnologies.minecraft.ldfl;
 
+import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
+import com.micatechnologies.minecraft.ldfl.hero.HeroEvents;
+import com.micatechnologies.minecraft.ldfl.hero.Heroes;
+import com.micatechnologies.minecraft.ldfl.network.LdflNetwork;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -16,9 +21,9 @@ import org.apache.logging.log4j.Logger;
  * and three keybound abilities (two on cooldowns, one ultimate). It also adds the heroes' gear
  * and a set of futuristic decor blocks.</p>
  *
- * <p>Lifecycle: {@code preInit} sets up config, the network channel, capabilities and event-bus
- * registrations and must not touch a {@code World}. {@code init} handles client keybinds and
- * renderers through the proxy.</p>
+ * <p>Lifecycle: {@code preInit} sets up heroes, the network channel, the capability and event-bus
+ * registrations, and must not touch a {@code World}. {@code init} registers client keybinds
+ * through the proxy.</p>
  */
 @Mod(modid = LdflConstants.MOD_NAMESPACE, name = LdflConstants.MOD_NAME,
      version = LdflConstants.MOD_VERSION, acceptedMinecraftVersions = "[1.12.2]")
@@ -35,6 +40,11 @@ public class Ldfl {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        Heroes.init();
+        LdflNetwork.register();
+        HeroCapability.register();
+        MinecraftForge.EVENT_BUS.register(new HeroCapability.Attacher());
+        MinecraftForge.EVENT_BUS.register(new HeroEvents());
         proxy.preInit(event);
     }
 
