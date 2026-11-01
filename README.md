@@ -26,6 +26,11 @@ Default keys (rebindable under *Controls → LDFL*): **R** ability 1, **G** abil
 `config/ldfl.cfg` → `combat.pvp` (default `false`). When it is off, hero kits affect hostile mobs
 only. When it is on, they also affect players, except players on your own scoreboard team.
 
+## Operator commands
+
+- `/ldfl ult [player]`: fill the active hero's ultimate meter.
+- `/ldfl reset [player]`: clear the active hero's ability cooldowns.
+
 ## Building
 
 Requires a JDK 17–22 (21 recommended) to run Gradle; the mod targets Java 8.

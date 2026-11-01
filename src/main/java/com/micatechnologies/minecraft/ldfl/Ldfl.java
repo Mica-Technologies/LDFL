@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl;
 
+import com.micatechnologies.minecraft.ldfl.command.CommandLdfl;
 import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
 import com.micatechnologies.minecraft.ldfl.hero.HeroEvents;
 import com.micatechnologies.minecraft.ldfl.hero.Heroes;
@@ -10,6 +11,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,5 +53,10 @@ public class Ldfl {
     @EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+    }
+
+    @EventHandler
+    public void serverStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandLdfl());
     }
 }
