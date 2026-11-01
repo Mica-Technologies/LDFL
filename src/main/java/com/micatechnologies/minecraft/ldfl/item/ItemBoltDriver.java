@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.item;
 
+import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.entity.EntityBolt;
 import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
@@ -22,8 +23,6 @@ import net.minecraft.world.World;
 public class ItemBoltDriver extends Item implements ISignatureItem {
 
     private static final int COOLDOWN_TICKS = 8;
-    private static final float DAMAGE = 4.0F;
-    private static final float SURGE_DAMAGE = 6.0F;
 
     public ItemBoltDriver() {
         setMaxStackSize(1);
@@ -42,7 +41,7 @@ public class ItemBoltDriver extends Item implements ISignatureItem {
             HeroData data = HeroCapability.get(player);
             boolean surging = data != null && data.surgeTicks > 0;
             EntityBolt bolt = new EntityBolt(world, player, player,
-                surging ? SURGE_DAMAGE : DAMAGE, surging);
+                (float) (surging ? LdflConfig.forgewright.boltDamage * 1.5D : LdflConfig.forgewright.boltDamage), surging);
             bolt.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 3.0F, 0.2F);
             world.spawnEntity(bolt);
         }

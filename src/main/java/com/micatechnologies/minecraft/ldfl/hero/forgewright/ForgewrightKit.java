@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.forgewright;
 
+import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.entity.EntitySentry;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
 import net.minecraft.entity.Entity;
@@ -32,7 +33,6 @@ public final class ForgewrightKit {
 
     private static final double DEPLOY_REACH = 6.0D;
     private static final int PLATING_TICKS = 5 * 20;
-    public static final int SURGE_TICKS = 8 * 20;
 
     private ForgewrightKit() {
         throw new AssertionError("No instances.");
@@ -91,7 +91,7 @@ public final class ForgewrightKit {
     }
 
     public static boolean slagSurge(EntityPlayerMP p, HeroData data) {
-        data.surgeTicks = SURGE_TICKS;
+        data.surgeTicks = LdflConfig.ticks(LdflConfig.forgewright.slagSurgeSeconds);
         p.world.playSound(null, p.posX, p.posY, p.posZ, SoundEvents.ENTITY_BLAZE_AMBIENT,
             SoundCategory.PLAYERS, 1.0F, 0.7F);
         p.getServerWorld().spawnParticle(EnumParticleTypes.LAVA, p.posX, p.posY + 1.0D, p.posZ, 12,

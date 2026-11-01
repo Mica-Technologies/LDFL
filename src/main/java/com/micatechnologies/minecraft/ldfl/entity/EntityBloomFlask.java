@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.entity;
 
+import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.HeroEvents;
 import com.micatechnologies.minecraft.ldfl.hero.Targeting;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,8 +23,6 @@ import net.minecraft.world.WorldServer;
 public class EntityBloomFlask extends EntityThrowable {
 
     private static final double RADIUS = 4.0D;
-    private static final float HEAL = 6.0F;
-    private static final float DAMAGE = 3.0F;
     private static final int WOUND_TICKS = 4 * 20;
 
     public EntityBloomFlask(World world) {
@@ -47,13 +46,13 @@ public class EntityBloomFlask extends EntityThrowable {
                     continue;
                 }
                 if (Targeting.isAlly(thrower, e)) {
-                    float healed = Math.min(HEAL, e.getMaxHealth() - e.getHealth());
-                    e.heal(HEAL);
+                    float healed = Math.min((float) LdflConfig.solace.bloomFlaskHeal, e.getMaxHealth() - e.getHealth());
+                    e.heal((float) LdflConfig.solace.bloomFlaskHeal);
                     if (thrower instanceof EntityPlayer && healed > 0.0F) {
                         HeroEvents.creditHealing((EntityPlayer) thrower, healed);
                     }
                 } else if (Targeting.isEnemy(thrower, e)) {
-                    e.attackEntityFrom(DamageSource.causeThrownDamage(this, thrower), DAMAGE);
+                    e.attackEntityFrom(DamageSource.causeThrownDamage(this, thrower), (float) LdflConfig.solace.bloomFlaskDamage);
                     e.addPotionEffect(new PotionEffect(HeroEvents.WOUNDED, WOUND_TICKS, 0, false, true));
                 }
             }

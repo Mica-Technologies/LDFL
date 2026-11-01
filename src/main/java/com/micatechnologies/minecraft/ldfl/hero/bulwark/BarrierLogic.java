@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.bulwark;
 
+import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.Ldfl;
 import com.micatechnologies.minecraft.ldfl.entity.EntityBarrier;
 import com.micatechnologies.minecraft.ldfl.entity.EntityBolt;
@@ -41,20 +42,24 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
  */
 public final class BarrierLogic {
 
-    public static final float MAX_HEALTH = 60.0F;
-    private static final float REGEN_PER_TICK = 6.0F / 20.0F;
     private static final int REGEN_DELAY_TICKS = 40;
-    private static final int BROKEN_LOCKOUT_TICKS = 100;
     /** Raise the panel only after the shield has been held up this long, so a tap does nothing. */
     private static final int RAISE_DELAY_TICKS = 4;
+
+    /** Configured barrier health. */
+    public static float maxHealth() {
+        return (float) LdflConfig.bulwark.barrierHealth;
+    }
 
     // --- Owner lifecycle (called from HeroEvents each tick) -----------------------------------
 
     /** Raise, hold, lower and regenerate the barrier for a player who is Bulwark. */
     public static void tickOwner(EntityPlayerMP player, HeroData data) {
         if (Float.isNaN(data.barrierHealth)) {
-            data.barrierHealth = MAX_HEALTH;
+            data.barrierHealth = maxHealth();
         }
+        // The config may have lowered the maximum since this barrier was last topped up.
+        data.barrierHealth = Math.min(data.barrierHealth, maxHealth());
         if (data.barrierBrokenTicks > 0) {
             data.barrierBrokenTicks--;
         }
@@ -78,12 +83,12 @@ public final class BarrierLogic {
         if (data.barrier == null
             && player.ticksExisted - data.barrierLastHitTick >= REGEN_DELAY_TICKS
             && data.barrierBrokenTicks == 0) {
-            data.barrierHealth = Math.min(MAX_HEALTH, data.barrierHealth + REGEN_PER_TICK);
+            data.barrierHealth = Math.min(maxHealth(), data.barrierHealth + (float) (LdflConfig.bulwark.barrierRegenPerSecond / 20.0D));
         }
         if (data.barrier != null) {
-            data.barrier.setHealthFraction(data.barrierHealth / MAX_HEALTH);
+            data.barrier.setHealthFraction(data.barrierHealth / maxHealth());
         }
-        data.resource = data.barrierHealth / MAX_HEALTH;
+        data.resource = data.barrierHealth / maxHealth();
     }
 
     /** Remove the panel if it is up. Safe to call for any player. */
@@ -110,14 +115,14 @@ public final class BarrierLogic {
         world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, at.x, at.y, at.z, 6,
             0.1D, 0.1D, 0.1D, 0.05D);
         if (data.barrierHealth <= 0.0F) {
-            data.barrierBrokenTicks = BROKEN_LOCKOUT_TICKS;
+            data.barrierBrokenTicks = LdflConfig.ticks(LdflConfig.bulwark.barrierBrokenSeconds);
             lower(owner, data);
             world.playSound(null, barrier.posX, barrier.posY, barrier.posZ,
                 SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS, 1.2F, 0.7F);
         } else {
             world.playSound(null, at.x, at.y, at.z, SoundEvents.BLOCK_GLASS_HIT,
                 SoundCategory.PLAYERS, 0.8F, 1.4F);
-            barrier.setHealthFraction(data.barrierHealth / MAX_HEALTH);
+            barrier.setHealthFraction(data.barrierHealth / maxHealth());
         }
     }
 

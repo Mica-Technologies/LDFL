@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.bulwark;
 
+import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
 import com.micatechnologies.minecraft.ldfl.hero.Targeting;
 import java.util.HashSet;
@@ -37,14 +38,11 @@ public final class BulwarkKit {
 
     private static final int RUSH_TICKS = 10;
     private static final double RUSH_SPEED = 1.6D;
-    private static final float RUSH_DAMAGE = 6.0F;
 
     private static final int SHOCKWAVE_RANGE = 16;
-    private static final float SHOCKWAVE_DAMAGE = 5.0F;
 
     private static final double FAULT_RANGE = 8.0D;
     private static final double FAULT_HALF_ANGLE_COS = Math.cos(Math.toRadians(50.0D));
-    private static final float FAULT_DAMAGE = 6.0F;
     private static final int FAULT_STAGGER_TICKS = 50;
 
     private BulwarkKit() {
@@ -80,7 +78,7 @@ public final class BulwarkKit {
         for (Entity e : p.world.getEntitiesWithinAABBExcludingEntity(p, box)) {
             if (Targeting.isEnemy(p, e)) {
                 EntityLivingBase target = (EntityLivingBase) e;
-                target.attackEntityFrom(DamageSource.causePlayerDamage(p), RUSH_DAMAGE);
+                target.attackEntityFrom(DamageSource.causePlayerDamage(p), (float) LdflConfig.bulwark.shoulderRushDamage);
                 float yaw = p.rotationYaw * 0.017453292F;
                 target.knockBack(p, 1.5F, MathHelper.sin(yaw), -MathHelper.cos(yaw));
                 p.motionX *= 0.2D;
@@ -114,7 +112,7 @@ public final class BulwarkKit {
             for (Entity e : near) {
                 if (!hit.contains(e) && Targeting.isEnemy(p, e)) {
                     hit.add(e);
-                    e.attackEntityFrom(DamageSource.causePlayerDamage(p), SHOCKWAVE_DAMAGE);
+                    e.attackEntityFrom(DamageSource.causePlayerDamage(p), (float) LdflConfig.bulwark.shockwaveDamage);
                     ((EntityLivingBase) e).knockBack(p, 0.6F, -dir.x, -dir.z);
                 }
             }
@@ -140,7 +138,7 @@ public final class BulwarkKit {
                 continue;
             }
             EntityLivingBase target = (EntityLivingBase) e;
-            target.attackEntityFrom(DamageSource.causePlayerDamage(p), FAULT_DAMAGE);
+            target.attackEntityFrom(DamageSource.causePlayerDamage(p), (float) LdflConfig.bulwark.faultLineDamage);
             target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, FAULT_STAGGER_TICKS, 3));
             target.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, FAULT_STAGGER_TICKS, 1));
             target.motionY += 0.45D;

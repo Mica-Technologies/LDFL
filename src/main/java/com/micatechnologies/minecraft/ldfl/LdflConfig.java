@@ -7,8 +7,13 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 /**
- * LDFL config ({@code config/ldfl.cfg}). Everything here is read on the server, which is
- * authoritative for combat, so nothing needs syncing to clients yet.
+ * LDFL config ({@code config/ldfl.cfg}).
+ *
+ * <p>Everything here is read on the server, which is authoritative for combat, so nothing needs
+ * syncing to clients: the HUD shows cooldowns and charge as the server reports them. Values are
+ * read when they are used, so a change made through the in-game config screen (or a reload) applies
+ * without a restart. The one exception is the sentry's max health, which applies to sentries
+ * deployed after the change.</p>
  */
 @Config(modid = LdflConstants.MOD_NAMESPACE)
 @Mod.EventBusSubscriber(modid = LdflConstants.MOD_NAMESPACE)
@@ -20,10 +25,19 @@ public final class LdflConfig {
     @Config.Comment("Role passive numbers.")
     public static final Passives passives = new Passives();
 
+    @Config.Comment("Bulwark (Tank) tuning.")
+    public static final Bulwark bulwark = new Bulwark();
+
+    @Config.Comment("Forgewright (Damage) tuning.")
+    public static final Forgewright forgewright = new Forgewright();
+
+    @Config.Comment("Solace (Support) tuning.")
+    public static final Solace solace = new Solace();
+
     public static final class Combat {
         @Config.Comment({"When true, hero abilities and turrets also affect players.",
             "Players on the same scoreboard team are never targeted.",
-            "When false (default), kits only affect hostile mobs."})
+            "When false (default), kits only affect hostile mobs, and every player counts as an ally."})
         public boolean pvp = false;
     }
 
@@ -44,7 +58,7 @@ public final class LdflConfig {
         @Config.RangeInt(min = 0, max = 30)
         public int damageWoundSeconds = 3;
 
-        @Config.Comment("Damage: fraction of healing a Wounded target still receives.")
+        @Config.Comment("Fraction of healing a Wounded target still receives.")
         @Config.RangeDouble(min = 0, max = 1)
         public double woundedHealingFactor = 0.5D;
 
@@ -57,7 +71,118 @@ public final class LdflConfig {
         public double supportRegenPerSecond = 0.5D;
     }
 
+    public static final class Bulwark {
+        @Config.Comment("Shoulder Rush cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double shoulderRushCooldown = 8.0D;
+
+        @Config.Comment("Shoulder Rush damage to the enemy it hits.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double shoulderRushDamage = 6.0D;
+
+        @Config.Comment("Shockwave cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double shockwaveCooldown = 6.0D;
+
+        @Config.Comment("Shockwave damage to each enemy along the line.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double shockwaveDamage = 5.0D;
+
+        @Config.Comment("Fault Line (ultimate) damage to each enemy in the cone.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double faultLineDamage = 6.0D;
+
+        @Config.Comment("Damage dealt to fill the ultimate meter.")
+        @Config.RangeDouble(min = 1, max = 10000)
+        public double ultCost = 160.0D;
+
+        @Config.Comment("Barrier health.")
+        @Config.RangeDouble(min = 1, max = 1000)
+        public double barrierHealth = 60.0D;
+
+        @Config.Comment("Barrier health regenerated per second while lowered.")
+        @Config.RangeDouble(min = 0, max = 1000)
+        public double barrierRegenPerSecond = 6.0D;
+
+        @Config.Comment("Seconds a broken barrier cannot be raised.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double barrierBrokenSeconds = 5.0D;
+    }
+
+    public static final class Forgewright {
+        @Config.Comment("Deploy Sentry cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double deploySentryCooldown = 10.0D;
+
+        @Config.Comment("Plating cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double platingCooldown = 12.0D;
+
+        @Config.Comment("Damage dealt to fill the ultimate meter.")
+        @Config.RangeDouble(min = 1, max = 10000)
+        public double ultCost = 200.0D;
+
+        @Config.Comment("Slag Surge (ultimate) duration, seconds.")
+        @Config.RangeDouble(min = 1, max = 60)
+        public double slagSurgeSeconds = 8.0D;
+
+        @Config.Comment("Bolt Driver damage per bolt (1.5x during Slag Surge).")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double boltDamage = 4.0D;
+
+        @Config.Comment("Sentry max health. Applies to sentries deployed after a change.")
+        @Config.RangeDouble(min = 1, max = 1000)
+        public double sentryHealth = 30.0D;
+
+        @Config.Comment("Sentry damage per bolt.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double sentryBoltDamage = 3.0D;
+
+        @Config.Comment("Ticks between sentry shots (halved during Slag Surge). 20 ticks = 1 second.")
+        @Config.RangeInt(min = 1, max = 200)
+        public int sentryFireIntervalTicks = 10;
+
+        @Config.Comment("Sentry targeting range, blocks.")
+        @Config.RangeDouble(min = 2, max = 64)
+        public double sentryRange = 16.0D;
+    }
+
+    public static final class Solace {
+        @Config.Comment("Bloom Flask cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double bloomFlaskCooldown = 8.0D;
+
+        @Config.Comment("Bloom Flask healing to each ally in the burst.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double bloomFlaskHeal = 6.0D;
+
+        @Config.Comment("Bloom Flask damage to each enemy in the burst.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double bloomFlaskDamage = 3.0D;
+
+        @Config.Comment("Tailwind cooldown, seconds.")
+        @Config.RangeDouble(min = 0, max = 120)
+        public double tailwindCooldown = 12.0D;
+
+        @Config.Comment("Heal beam healing per second.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double beamHealPerSecond = 3.0D;
+
+        @Config.Comment("Sanctuary (ultimate) instant healing to each ally.")
+        @Config.RangeDouble(min = 0, max = 100)
+        public double sanctuaryHeal = 10.0D;
+
+        @Config.Comment("Healing done to fill the ultimate meter.")
+        @Config.RangeDouble(min = 1, max = 10000)
+        public double ultCost = 200.0D;
+    }
+
     private LdflConfig() {
+    }
+
+    /** Seconds from config to whole ticks. */
+    public static int ticks(double seconds) {
+        return (int) Math.round(seconds * LdflConstants.TICKS_PER_SECOND);
     }
 
     @SubscribeEvent

@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.hero.solace;
 
+import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.entity.EntityBloomFlask;
 import com.micatechnologies.minecraft.ldfl.entity.EntityHealBeam;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
@@ -41,7 +42,6 @@ public final class SolaceKit {
     private static final double BEAM_ACQUIRE_RANGE = 12.0D;
     private static final double BEAM_HOLD_RANGE = 15.0D;
     private static final double BEAM_HOLD_COS = Math.cos(Math.toRadians(35.0D));
-    private static final float BEAM_HEAL_PER_TICK = 3.0F / 20.0F;
 
     private static final double TAILWIND_RADIUS = 8.0D;
     private static final double SANCTUARY_RADIUS = 10.0D;
@@ -70,8 +70,8 @@ public final class SolaceKit {
             data.beam.setTarget(target);
         }
         EntityLivingBase ally = (EntityLivingBase) target;
-        float healed = Math.min(BEAM_HEAL_PER_TICK, ally.getMaxHealth() - ally.getHealth());
-        ally.heal(BEAM_HEAL_PER_TICK);
+        float healed = Math.min((float) (LdflConfig.solace.beamHealPerSecond / 20.0D), ally.getMaxHealth() - ally.getHealth());
+        ally.heal((float) (LdflConfig.solace.beamHealPerSecond / 20.0D));
         if (healed > 0.0F) {
             HeroEvents.creditHealing(p, healed);
         }
@@ -159,7 +159,7 @@ public final class SolaceKit {
             if (!Targeting.isAlly(p, e) || e.getDistanceSq(p) > SANCTUARY_RADIUS * SANCTUARY_RADIUS) {
                 continue;
             }
-            e.heal(10.0F);
+            e.heal((float) LdflConfig.solace.sanctuaryHeal);
             e.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 6 * 20, 1));
             e.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 6 * 20, 0));
             world.spawnParticle(EnumParticleTypes.HEART, e.posX, e.posY + e.height + 0.3D, e.posZ, 4,

@@ -1,5 +1,6 @@
 package com.micatechnologies.minecraft.ldfl.entity;
 
+import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.HeroCapability;
 import com.micatechnologies.minecraft.ldfl.hero.HeroData;
 import com.micatechnologies.minecraft.ldfl.hero.Heroes;
@@ -36,14 +37,13 @@ import net.minecraft.world.WorldServer;
  */
 public class EntitySentry extends EntityLiving {
 
-    public static final float MAX_HEALTH = 30.0F;
-    private static final double RANGE = 16.0D;
-    private static final int FIRE_INTERVAL = 10;
-    private static final int SURGE_FIRE_INTERVAL = 5;
-    private static final float BOLT_DAMAGE = 3.0F;
     private static final float REPAIR_PER_HIT = 6.0F;
     private static final int IDLE_PACK_UP_TICKS = 30 * 20;
     private static final float TURN_RATE = 25.0F;
+
+    private static double range() {
+        return LdflConfig.forgewright.sentryRange;
+    }
 
     private static final DataParameter<Boolean> ACTIVE =
         EntityDataManager.createKey(EntitySentry.class, DataSerializers.BOOLEAN);
@@ -76,7 +76,7 @@ public class EntitySentry extends EntityLiving {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(MAX_HEALTH);
+        getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(LdflConfig.forgewright.sentryHealth);
         getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
         getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1.0D);
     }
@@ -147,25 +147,25 @@ public class EntitySentry extends EntityLiving {
 
         boolean onTarget = Math.abs(Aim.wrap(Aim.yaw(dx, dz) - rotationYawHead)) < 10.0F;
         if (fireCooldown == 0 && onTarget) {
-            EntityBolt bolt = new EntityBolt(world, this, owner, BOLT_DAMAGE, surging);
+            EntityBolt bolt = new EntityBolt(world, this, owner, (float) LdflConfig.forgewright.sentryBoltDamage, surging);
             bolt.shoot(dx, dy, dz, 2.2F, 1.0F);
             world.spawnEntity(bolt);
             world.playSound(null, posX, posY, posZ, SoundEvents.ENTITY_SHULKER_SHOOT,
                 SoundCategory.HOSTILE, 0.5F, 1.6F);
-            fireCooldown = surging ? SURGE_FIRE_INTERVAL : FIRE_INTERVAL;
+            fireCooldown = surging ? Math.max(1, LdflConfig.forgewright.sentryFireIntervalTicks / 2) : LdflConfig.forgewright.sentryFireIntervalTicks;
         }
     }
 
     private boolean isValidTarget(EntityPlayer owner, EntityLivingBase t) {
         return t != null && !t.isDead && Targeting.isEnemy(owner, t)
-            && getDistanceSq(t) <= RANGE * RANGE && canEntityBeSeen(t);
+            && getDistanceSq(t) <= range() * range() && canEntityBeSeen(t);
     }
 
     private EntityLivingBase findTarget(EntityPlayer owner) {
         EntityLivingBase best = null;
         double bestDist = Double.MAX_VALUE;
         for (EntityLivingBase e : world.getEntitiesWithinAABB(EntityLivingBase.class,
-            getEntityBoundingBox().grow(RANGE))) {
+            getEntityBoundingBox().grow(range()))) {
             double d = getDistanceSq(e);
             if (d < bestDist && isValidTarget(owner, e)) {
                 best = e;

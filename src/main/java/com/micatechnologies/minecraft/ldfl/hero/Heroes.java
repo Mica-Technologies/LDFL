@@ -1,5 +1,8 @@
 package com.micatechnologies.minecraft.ldfl.hero;
 
+import static com.micatechnologies.minecraft.ldfl.LdflConfig.ticks;
+
+import com.micatechnologies.minecraft.ldfl.LdflConfig;
 import com.micatechnologies.minecraft.ldfl.hero.bulwark.BulwarkKit;
 import com.micatechnologies.minecraft.ldfl.hero.core.AbilitySpec;
 import com.micatechnologies.minecraft.ldfl.hero.forgewright.ForgewrightKit;
@@ -28,33 +31,33 @@ public final class Heroes {
         throw new AssertionError("No instances.");
     }
 
-    private static int seconds(int s) {
-        return s * 20;
-    }
-
+    /**
+     * Register every hero. Cooldowns and ult costs are read from {@link LdflConfig} each time they
+     * are used, so the lambdas below must stay lambdas: capturing the value here would freeze it.
+     */
     public static void init() {
         BULWARK = HeroRegistry.register(new HeroDefinition(
             new HeroSpec(BULWARK_ID, Role.TANK,
-                new AbilitySpec("shoulder_rush", seconds(8)),
-                new AbilitySpec("shockwave", seconds(6)),
+                new AbilitySpec("shoulder_rush", () -> ticks(LdflConfig.bulwark.shoulderRushCooldown)),
+                new AbilitySpec("shockwave", () -> ticks(LdflConfig.bulwark.shockwaveCooldown)),
                 new AbilitySpec("fault_line", 0),
-                160.0F),
+                () -> LdflConfig.bulwark.ultCost),
             BulwarkKit::shoulderRush, BulwarkKit::shockwave, BulwarkKit::faultLine));
 
         FORGEWRIGHT = HeroRegistry.register(new HeroDefinition(
             new HeroSpec(FORGEWRIGHT_ID, Role.DAMAGE,
-                new AbilitySpec("deploy_sentry", seconds(10)),
-                new AbilitySpec("plating", seconds(12)),
+                new AbilitySpec("deploy_sentry", () -> ticks(LdflConfig.forgewright.deploySentryCooldown)),
+                new AbilitySpec("plating", () -> ticks(LdflConfig.forgewright.platingCooldown)),
                 new AbilitySpec("slag_surge", 0),
-                200.0F),
+                () -> LdflConfig.forgewright.ultCost),
             ForgewrightKit::deploySentry, ForgewrightKit::plating, ForgewrightKit::slagSurge));
 
         SOLACE = HeroRegistry.register(new HeroDefinition(
             new HeroSpec(SOLACE_ID, Role.SUPPORT,
-                new AbilitySpec("bloom_flask", seconds(8)),
-                new AbilitySpec("tailwind", seconds(12)),
+                new AbilitySpec("bloom_flask", () -> ticks(LdflConfig.solace.bloomFlaskCooldown)),
+                new AbilitySpec("tailwind", () -> ticks(LdflConfig.solace.tailwindCooldown)),
                 new AbilitySpec("sanctuary", 0),
-                200.0F),
+                () -> LdflConfig.solace.ultCost),
             SolaceKit::bloomFlask, SolaceKit::tailwind, SolaceKit::sanctuary));
     }
 }
