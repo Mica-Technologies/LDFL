@@ -1,0 +1,134 @@
+site_name: LDFL Wiki
+site_description: >-
+  Limitless Development: Frontline Heroes, a hero-shooter inspired Minecraft 1.12.2 Forge mod.
+  Hold a hero's signature item to become that hero, with a role passive, two abilities and an
+  ultimate.
+site_url: https://mica-technologies.github.io/LDFL/
+repo_url: https://github.com/Mica-Technologies/LDFL
+repo_name: Mica-Technologies/LDFL
+edit_uri: edit/main/docs/
+copyright: >-
+  LDFL is licensed under the MIT License. Documentation is part of the LDFL repository.
+
+# The phased plan and agent working notes are gitignored working documents, not published
+# material. They are absent from a CI checkout anyway; this keeps a LOCAL `mkdocs serve` or
+# `mkdocs build` from picking them up and publishing them on the next deploy.
+exclude_docs: |
+  AGENT-PLANS/
+
+theme:
+  name: material
+  language: en
+  favicon: assets/images/icons/longshot_rifle.png
+  logo: assets/images/icons/bulwark_shield.png
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - content.tooltips
+    - toc.follow
+  palette:
+    # Colours are set in assets/ldfl.css; `custom` tells Material to read them from there.
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  # Renders :material-…: / :octicons-…: shortcodes as inline SVG icons. Without this they render
+  # as literal colon-wrapped text.
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search
+
+extra_css:
+  - assets/ldfl.css
+
+# Anchors are checked too, so a link to a renamed heading fails the strict build instead of
+# silently landing at the top of the page.
+validation:
+  anchors: warn
+
+nav:
+  - Home: index.md
+  - Get started:
+      - Installing: start/installing.md
+      - Your first hero: start/first-hero.md
+      - The hero HUD: start/hud.md
+  - Playing:
+      - How heroes work: guide/how-heroes-work.md
+      - Roles and passives: guide/roles.md
+      - Ultimates: guide/ultimates.md
+      - Allies, enemies and PvP: guide/allies-and-enemies.md
+      - Playing as a team: guide/team-play.md
+  - Heroes:
+      - heroes/index.md
+      - Tanks:
+          - Bulwark: heroes/bulwark.md
+          - Monolith: heroes/monolith.md
+      - Damage:
+          - Forgewright: heroes/forgewright.md
+          - Kestrel: heroes/kestrel.md
+      - Support:
+          - Solace: heroes/solace.md
+          - Chime: heroes/chime.md
+  - Building set: guide/building-set.md
+  - Reference:
+      - Items and recipes: reference/items-and-recipes.md
+      - Ability table: reference/abilities.md
+      - Status effects: reference/effects.md
+      - Configuration: reference/config.md
+      - Commands: reference/commands.md
+      - Advancements: reference/advancements.md
+      - Sounds and subtitles: reference/sounds.md
+  - Help:
+      - Troubleshooting: help/troubleshooting.md
+      - FAQ: help/faq.md
+      - Glossary: help/glossary.md
+  - Developers:
+      - Architecture: developer/architecture.md
+      - Building from source: developer/building-from-source.md
+      - Adding a hero: developer/adding-a-hero.md
+      - Contributing: developer/contributing.md

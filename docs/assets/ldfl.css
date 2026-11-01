@@ -1,0 +1,294 @@
+/* ============================================================================
+   LDFL wiki theme
+   ----------------------------------------------------------------------------
+   A deep "hull" navy for the header and an ultimate-meter gold for accents.
+   The three role colours are the exact ones the in-game HUD uses for the role
+   label (HeroHud.roleColor), so a reader sees the same blue / red / green here
+   as on screen.
+   ============================================================================ */
+
+:root {
+  --ldfl-hull-900: hsl(222, 38%, 9%);
+  --ldfl-hull-800: hsl(222, 32%, 14%);
+  --ldfl-hull-700: hsl(222, 26%, 22%);
+  --ldfl-hull-200: hsl(222, 22%, 86%);
+  --ldfl-hull-100: hsl(222, 30%, 94%);
+
+  --ldfl-gold:      #ffc23f;
+  --ldfl-gold-dark: #d99a0b;
+
+  --ldfl-tank:    #6fb7ff;
+  --ldfl-damage:  #ff6f6f;
+  --ldfl-support: #7fff9f;
+
+  --ldfl-radius: 8px;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        var(--ldfl-hull-900);
+  --md-primary-fg-color--light: var(--ldfl-hull-700);
+  --md-primary-fg-color--dark:  var(--ldfl-hull-900);
+  --md-primary-bg-color:        #ffffff;
+  --md-accent-fg-color:         var(--ldfl-gold-dark);
+  --md-typeset-a-color:         hsl(212, 80%, 38%);
+  /* Role colours darkened for contrast on white. */
+  --ldfl-tank-ink:    hsl(212, 80%, 40%);
+  --ldfl-damage-ink:  hsl(0, 70%, 46%);
+  --ldfl-support-ink: hsl(140, 60%, 30%);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:        var(--ldfl-hull-900);
+  --md-primary-fg-color--light: var(--ldfl-hull-700);
+  --md-primary-fg-color--dark:  var(--ldfl-hull-900);
+  --md-accent-fg-color:         var(--ldfl-gold);
+  --md-default-bg-color:        hsl(222, 28%, 11%);
+  --md-typeset-a-color:         var(--ldfl-tank);
+  --ldfl-tank-ink:    var(--ldfl-tank);
+  --ldfl-damage-ink:  var(--ldfl-damage);
+  --ldfl-support-ink: var(--ldfl-support);
+}
+
+/* Pixel art must stay pixel art when scaled. */
+.md-typeset img.px,
+.md-header__button.md-logo img,
+.md-typeset .hero-card img,
+.md-typeset .recipe img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Inline item icon, sized to the text line. */
+.md-typeset img.icon {
+  width: 1.6em;
+  height: 1.6em;
+  vertical-align: -0.45em;
+  image-rendering: pixelated;
+}
+
+.md-typeset img.icon-lg {
+  width: 64px;
+  height: 64px;
+  image-rendering: pixelated;
+  float: right;
+  margin: 0 0 1em 1em;
+}
+
+/* Screenshots: soft frame, rounded, full width. */
+.md-typeset img.shot,
+.md-typeset figure img {
+  border-radius: var(--ldfl-radius);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.md-typeset figure figcaption {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* ------------------------------------------------------------------ role badges */
+.md-typeset .role {
+  display: inline-block;
+  padding: 0.05em 0.6em;
+  border-radius: 999px;
+  font-size: 0.75em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  vertical-align: 0.1em;
+}
+.md-typeset .role.tank    { color: var(--ldfl-tank-ink); }
+.md-typeset .role.damage  { color: var(--ldfl-damage-ink); }
+.md-typeset .role.support { color: var(--ldfl-support-ink); }
+
+/* ------------------------------------------------------------------ key caps */
+.md-typeset .slot {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0 0.4em;
+  border-radius: 4px;
+  background: var(--ldfl-hull-800);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.8em;
+  text-align: center;
+}
+.md-typeset .slot.ult {
+  background: var(--ldfl-gold);
+  color: var(--ldfl-hull-900);
+}
+
+/* ------------------------------------------------------------------ hero roster cards */
+.md-typeset .grid.cards.heroes > ul > li,
+.md-typeset .grid.cards.heroes > ol > li {
+  border-top-width: 4px;
+}
+.md-typeset .grid.cards.heroes > ul > li:has(.role.tank)    { border-top-color: var(--ldfl-tank-ink); }
+.md-typeset .grid.cards.heroes > ul > li:has(.role.damage)  { border-top-color: var(--ldfl-damage-ink); }
+.md-typeset .grid.cards.heroes > ul > li:has(.role.support) { border-top-color: var(--ldfl-support-ink); }
+
+/* ------------------------------------------------------------------ hero header strip */
+.md-typeset .hero-strip {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-radius: var(--ldfl-radius);
+  background: linear-gradient(90deg, var(--ldfl-hull-900), var(--ldfl-hull-700));
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+.md-typeset .hero-strip img {
+  width: 56px;
+  height: 56px;
+  image-rendering: pixelated;
+}
+.md-typeset .hero-strip .meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.md-typeset .hero-strip .meta strong {
+  font-size: 1.1rem;
+}
+.md-typeset .hero-strip .role.tank    { color: var(--ldfl-tank); }
+.md-typeset .hero-strip .role.damage  { color: var(--ldfl-damage); }
+.md-typeset .hero-strip .role.support { color: var(--ldfl-support); }
+
+/* ------------------------------------------------------------------ crafting grids */
+.md-typeset .recipe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0.4rem 1.2rem 0.8rem 0;
+  vertical-align: top;
+}
+.md-typeset .recipe .grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 2.6rem);
+  grid-template-rows: repeat(3, 2.6rem);
+  gap: 3px;
+  padding: 4px;
+  background: #8b8b8b;
+  border-radius: 4px;
+}
+.md-typeset .recipe .cell,
+.md-typeset .recipe .out {
+  background: #c6c6c6;
+  box-shadow: inset 2px 2px 0 #555, inset -2px -2px 0 #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  line-height: 1.05;
+  text-align: center;
+  color: #222;
+  overflow: hidden;
+  padding: 2px;
+}
+.md-typeset .recipe .cell img,
+.md-typeset .recipe .out img {
+  width: 80%;
+  height: 80%;
+}
+.md-typeset .recipe .arrow {
+  font-size: 1.6rem;
+  opacity: 0.7;
+}
+.md-typeset .recipe .out {
+  width: 3.4rem;
+  height: 3.4rem;
+  position: relative;
+  border-radius: 2px;
+}
+.md-typeset .recipe .out .count {
+  position: absolute;
+  right: 3px;
+  bottom: 1px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 1px 1px 0 #3f3f3f;
+}
+.md-typeset .recipe .label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+/* ------------------------------------------------------------------ ability blocks */
+.md-typeset .admonition.ability,
+.md-typeset details.ability {
+  border-color: var(--ldfl-hull-700);
+}
+.md-typeset .ability > .admonition-title,
+.md-typeset .ability > summary {
+  background-color: rgba(111, 183, 255, 0.12);
+}
+.md-typeset .ability > .admonition-title::before,
+.md-typeset .ability > summary::before {
+  background-color: var(--ldfl-tank-ink);
+  -webkit-mask-image: var(--md-admonition-icon--tip);
+          mask-image: var(--md-admonition-icon--tip);
+}
+.md-typeset .admonition.ultimate,
+.md-typeset details.ultimate {
+  border-color: var(--ldfl-gold-dark);
+}
+.md-typeset .ultimate > .admonition-title,
+.md-typeset .ultimate > summary {
+  background-color: rgba(255, 194, 63, 0.16);
+}
+.md-typeset .ultimate > .admonition-title::before,
+.md-typeset .ultimate > summary::before {
+  background-color: var(--ldfl-gold-dark);
+  -webkit-mask-image: var(--md-admonition-icon--success);
+          mask-image: var(--md-admonition-icon--success);
+}
+
+/* ------------------------------------------------------------------ landing hero banner */
+.md-typeset .banner {
+  position: relative;
+  border-radius: var(--ldfl-radius);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+.md-typeset .banner img {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+.md-typeset .banner .caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 2.5rem 1.2rem 0.9rem;
+  background: linear-gradient(transparent, rgba(8, 12, 22, 0.88));
+  color: #fff;
+}
+.md-typeset .banner .caption strong {
+  font-size: 1.4rem;
+  display: block;
+}
+
+/* Stat table numbers line up. */
+.md-typeset table td.num,
+.md-typeset table th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Key caps need an edge on the dark scheme, where the cap colour is close to the page. */
+[data-md-color-scheme="slate"] .md-typeset .slot:not(.ult) {
+  background: var(--ldfl-hull-700);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+/* Registry ids in tables read better unbroken. */
+.md-typeset table code {
+  white-space: nowrap;
+}

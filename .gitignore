@@ -112,3 +112,6 @@ docs/AGENT-PLANS/
 .env.*
 *credentials*
 __pycache__/
+
+# MkDocs build output (the wiki is built and deployed by CI)
+/site/

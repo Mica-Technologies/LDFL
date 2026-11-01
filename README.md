@@ -2,6 +2,9 @@
 
 A hero-shooter inspired mod for Minecraft 1.12.2 (Forge).
 
+**[Read the wiki](https://mica-technologies.github.io/LDFL/)** for a guide to every hero, the HUD,
+recipes, configuration and more.
+
 **Hold a hero's signature item and you become that hero.** Each hero has a role:
 
 | Role | Passive |
