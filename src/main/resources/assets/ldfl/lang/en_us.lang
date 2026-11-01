@@ -103,3 +103,16 @@ subtitles.ldfl.ult_ready=Ultimate ready
 subtitles.ldfl.updraft=Updraft
 subtitles.ldfl.upheaval=Upheaval
 subtitles.ldfl.ward_bell=Ward Bell
+
+advancements.ldfl.root.title=Frontline Heroes
+advancements.ldfl.root.description=Pick up a hero's signature item and become that hero
+advancements.ldfl.tank.title=Hold the Line
+advancements.ldfl.tank.description=Take up a Tank's signature item
+advancements.ldfl.damage.title=Pressure Point
+advancements.ldfl.damage.description=Take up a Damage hero's signature item
+advancements.ldfl.support.title=Keep Them Standing
+advancements.ldfl.support.description=Take up a Support's signature item
+advancements.ldfl.mending_station.title=Patched Up
+advancements.ldfl.mending_station.description=Get a Mending Station
+advancements.ldfl.full_roster.title=Full Roster
+advancements.ldfl.full_roster.description=Collect a signature item from every hero

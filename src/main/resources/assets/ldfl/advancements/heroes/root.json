@@ -1,0 +1,111 @@
+{
+  "display": {
+    "icon": {
+      "item": "ldfl:bulwark_shield"
+    },
+    "title": {
+      "translate": "advancements.ldfl.root.title"
+    },
+    "description": {
+      "translate": "advancements.ldfl.root.description"
+    },
+    "frame": "task",
+    "background": "ldfl:textures/blocks/grid_floor.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "bulwark_shield": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bulwark_shield"
+          }
+        ]
+      }
+    },
+    "bulwark_maul": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bulwark_maul"
+          }
+        ]
+      }
+    },
+    "cragfist": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:cragfist"
+          }
+        ]
+      }
+    },
+    "bolt_driver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bolt_driver"
+          }
+        ]
+      }
+    },
+    "tinkers_wrench": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:tinkers_wrench"
+          }
+        ]
+      }
+    },
+    "longshot_rifle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:longshot_rifle"
+          }
+        ]
+      }
+    },
+    "solace_staff": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:solace_staff"
+          }
+        ]
+      }
+    },
+    "tuning_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:tuning_rod"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bulwark_shield",
+      "bulwark_maul",
+      "cragfist",
+      "bolt_driver",
+      "tinkers_wrench",
+      "longshot_rifle",
+      "solace_staff",
+      "tuning_rod"
+    ]
+  ]
+}

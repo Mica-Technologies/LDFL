@@ -1,0 +1,119 @@
+{
+  "parent": "ldfl:heroes/root",
+  "display": {
+    "icon": {
+      "item": "ldfl:tuning_rod"
+    },
+    "title": {
+      "translate": "advancements.ldfl.full_roster.title"
+    },
+    "description": {
+      "translate": "advancements.ldfl.full_roster.description"
+    },
+    "frame": "challenge"
+  },
+  "criteria": {
+    "bulwark_bulwark_shield": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bulwark_shield"
+          }
+        ]
+      }
+    },
+    "bulwark_bulwark_maul": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bulwark_maul"
+          }
+        ]
+      }
+    },
+    "monolith_cragfist": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:cragfist"
+          }
+        ]
+      }
+    },
+    "forgewright_bolt_driver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bolt_driver"
+          }
+        ]
+      }
+    },
+    "forgewright_tinkers_wrench": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:tinkers_wrench"
+          }
+        ]
+      }
+    },
+    "kestrel_longshot_rifle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:longshot_rifle"
+          }
+        ]
+      }
+    },
+    "solace_solace_staff": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:solace_staff"
+          }
+        ]
+      }
+    },
+    "chime_tuning_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:tuning_rod"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bulwark_bulwark_shield",
+      "bulwark_bulwark_maul"
+    ],
+    [
+      "monolith_cragfist"
+    ],
+    [
+      "forgewright_bolt_driver",
+      "forgewright_tinkers_wrench"
+    ],
+    [
+      "kestrel_longshot_rifle"
+    ],
+    [
+      "solace_solace_staff"
+    ],
+    [
+      "chime_tuning_rod"
+    ]
+  ]
+}

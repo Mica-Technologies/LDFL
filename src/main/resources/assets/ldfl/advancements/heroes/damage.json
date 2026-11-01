@@ -1,0 +1,54 @@
+{
+  "parent": "ldfl:heroes/root",
+  "display": {
+    "icon": {
+      "item": "ldfl:longshot_rifle"
+    },
+    "title": {
+      "translate": "advancements.ldfl.damage.title"
+    },
+    "description": {
+      "translate": "advancements.ldfl.damage.description"
+    },
+    "frame": "task"
+  },
+  "criteria": {
+    "bolt_driver": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bolt_driver"
+          }
+        ]
+      }
+    },
+    "tinkers_wrench": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:tinkers_wrench"
+          }
+        ]
+      }
+    },
+    "longshot_rifle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:longshot_rifle"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bolt_driver",
+      "tinkers_wrench",
+      "longshot_rifle"
+    ]
+  ]
+}

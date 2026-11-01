@@ -1,0 +1,54 @@
+{
+  "parent": "ldfl:heroes/root",
+  "display": {
+    "icon": {
+      "item": "ldfl:bulwark_shield"
+    },
+    "title": {
+      "translate": "advancements.ldfl.tank.title"
+    },
+    "description": {
+      "translate": "advancements.ldfl.tank.description"
+    },
+    "frame": "task"
+  },
+  "criteria": {
+    "bulwark_shield": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bulwark_shield"
+          }
+        ]
+      }
+    },
+    "bulwark_maul": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:bulwark_maul"
+          }
+        ]
+      }
+    },
+    "cragfist": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:cragfist"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bulwark_shield",
+      "bulwark_maul",
+      "cragfist"
+    ]
+  ]
+}

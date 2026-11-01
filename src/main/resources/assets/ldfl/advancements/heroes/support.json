@@ -1,0 +1,43 @@
+{
+  "parent": "ldfl:heroes/root",
+  "display": {
+    "icon": {
+      "item": "ldfl:solace_staff"
+    },
+    "title": {
+      "translate": "advancements.ldfl.support.title"
+    },
+    "description": {
+      "translate": "advancements.ldfl.support.description"
+    },
+    "frame": "task"
+  },
+  "criteria": {
+    "solace_staff": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:solace_staff"
+          }
+        ]
+      }
+    },
+    "tuning_rod": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:tuning_rod"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "solace_staff",
+      "tuning_rod"
+    ]
+  ]
+}

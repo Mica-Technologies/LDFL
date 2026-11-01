@@ -1,0 +1,32 @@
+{
+  "parent": "ldfl:heroes/support",
+  "display": {
+    "icon": {
+      "item": "ldfl:mending_station"
+    },
+    "title": {
+      "translate": "advancements.ldfl.mending_station.title"
+    },
+    "description": {
+      "translate": "advancements.ldfl.mending_station.description"
+    },
+    "frame": "task"
+  },
+  "criteria": {
+    "mending_station": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ldfl:mending_station"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mending_station"
+    ]
+  ]
+}
